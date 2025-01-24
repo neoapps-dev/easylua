@@ -333,13 +333,8 @@ end
 -- List files in a directory
 function EasyLua.listFiles(dir)
     local files = {}
-    local pfile = io.popen('ls "' .. dir .. '" 2>/dev/null') -- Unix-like systems
-    if not pfile then
-        pfile = io.popen('dir /b "' .. dir .. '"') -- Windows
-        if not pfile then
-            pfile = io.popen('ls "' .. dir .. '"') -- Special case: Windows with GNU coreutils (mine lmao)
-        end
-    end
+    local command = (package.config:sub(1,1) == '\\') and 'dir /b ' .. dir or 'ls ' .. dir .. ' 2>/dev/null';
+    local pfile = io.popen(command)
     if pfile then
         for file in pfile:lines() do
             table.insert(files, file)
