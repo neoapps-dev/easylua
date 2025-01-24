@@ -785,6 +785,156 @@ print(EasyLua.getOS()) -- e.g., "Unix-like"
 
 ---
 
+### `EasyLua.getEnv(var)`
+
+Returns the operating system name.
+
+- **Parameters**:
+  - `var` (string): The environment variable name.
+
+- **Returns**:
+  - The value of the enviroment variable.
+
+```lua
+print(EasyLua.getEnv("USER")) -- e.g., "neo"
+```
+
+---
+
+### `EasyLua.setEnv(var, value)`
+
+Sets the value of an enviroment variable.
+
+- **Parameters**:
+  - `var` (string): The environment variable name.
+  - `value` (string): The value to set.
+
+---
+
+### `EasyLua.isProcessRunning(process)`
+
+Check if a process is running.
+
+- **Parameters**:
+  - `process` (string): The name or PID of the process to check.
+
+- **Returns**:
+  - `true` if the process is running, `false` otherwise.
+
+---
+
+### `EasyLua.killProcess(process)`
+
+Check if a process is running.
+
+- **Parameters**:
+  - `process` (string): The name or PID of the process to kill.
+
+---
+
+### `EasyLua.getUsername()`
+
+Get the current user's username.
+
+- **Returns**:
+  - (string) The username.
+
+---
+
+### `EasyLua.getHostname()`
+
+Get the current machine hostname.
+
+- **Returns**:
+  - (string) The hostname.
+
+---
+
+### `EasyLua.getUptime()`
+
+Get the uptime of the current machine.
+
+- **Returns**:
+  - (string) Uptime of the machine.
+
+---
+
+### `EasyLua.getLocalIP()`
+
+Get the local IP address of the system.
+
+- **Returns**:
+  - (string) The local IP address.
+
+---
+
+### `EasyLua.checkInternet()`
+
+Check if a true internet connection is available.
+
+- **Returns**:
+  - `true` if there is, `false` otherwise.
+
+---
+
+### `EasyLua.notify(title, message)`
+
+Sends a desktop notification on Unix-Like systems. and a dialog box on Windows.
+
+- **Parameters**:
+  - `title` (string): The title of the notification.
+  - `message` (string): The message of the notification.
+
+---
+
+### `EasyLua.getTimestamp()`
+
+Get the system current timestamp.
+
+- **Returns**:
+  - (string) The timestamp in format `YYYY-MM-DD HH:MM:SS`.
+
+---
+
+### `EasyLua.getTimezone()`
+
+Get the timezone of the system.
+
+- **Returns**:
+  - (string) The timezone of the system.
+
+---
+
+### `EasyLua.shutdown()`
+
+Shutdown the system.
+
+---
+
+### `EasyLua.restart()`
+
+Reboot the system.
+
+---
+
+### `EasyLua.getCPUUsage()` (BASIC)
+
+Get the CPU Usage of the system (in percentage, without the percent symbol)
+
+- **Returns**:
+  - (number) The CPU usage of the system.
+
+---
+
+### `EasyLua.getMemoryUsage()` (BASIC)
+
+Get the Memory Usage of the system (in percentage, without the percent symbol)
+
+- **Returns**:
+  - (number) The Memory usage of the system.
+
+---
+
 ## Advanced Utilities
 
 ### `EasyLua.generateUUID()`

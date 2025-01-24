@@ -256,6 +256,39 @@ EasyLua.assert(cwd ~= nil, "Failed to get current working directory.")
 local osName = EasyLua.getOS()
 EasyLua.assert(osName == "Windows" or osName == "Unix-like", "Failed to detect OS.")
 
+-- Get the current username
+local username = EasyLua.getUsername()
+EasyLua.assert(username ~= nil, "Failed to get username.")
+
+-- Get the system's hostname
+local hostname = EasyLua.getHostname()
+EasyLua.assert(hostname ~= nil, "Failed to get hostname.")
+
+-- Get the system's uptime
+local uptime = EasyLua.getUptime()
+EasyLua.assert(uptime ~= nil, "Failed to get uptime.")
+
+-- Get the local IP address
+local ip = EasyLua.getLocalIP()
+EasyLua.assert(ip ~= nil, "Failed to get local IP address.")
+
+-- Check internet connectivity
+local internet = EasyLua.checkInternet()
+EasyLua.assert(internet == true or internet == false, "Failed to check internet connectivity.")
+
+-- Send a desktop notification
+-- On GNU/Linux, this will show a notification.
+-- On Windows, this will show a message box.
+EasyLua.notify("Test", "This is a test notification.")
+
+-- Get the current timestamp
+local timestamp = EasyLua.getTimestamp()
+EasyLua.assert(timestamp ~= nil, "Failed to get timestamp.")
+
+-- Get the system's timezone
+local timezone = EasyLua.getTimezone()
+EasyLua.assert(timezone ~= nil, "Failed to get timezone.")
+
 print("All system tests passed!")
 
 ---------------------

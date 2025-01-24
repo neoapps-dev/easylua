@@ -385,6 +385,170 @@ function EasyLua.getOS()
     return package.config:sub(1, 1) == "/" and "Unix-like" or "Windows"
 end
 
+-- Get the value of an environment variable
+function EasyLua.getEnv(var)
+    return os.getenv(var)
+end
+
+-- Set the value of an environment variable
+function EasyLua.setEnv(var, value)
+    if EasyLua.getOS() == "Windows" then
+        os.execute("set " .. var .. "=" .. value)
+    else
+        os.execute("export " .. var .. "=" .. value)
+    end
+end
+
+-- Check if a process is running
+function EasyLua.isProcessRunning(process)
+    if EasyLua.getOS() == "Windows" then
+        local handle = io.popen("tasklist /FI \"IMAGENAME eq " .. process .. "\" 2>nul")
+        local result = handle:read("*a")
+        handle:close()
+        return result:find(process) ~= nil
+    else
+        local handle = io.popen("pgrep " .. process)
+        local result = handle:read("*a")
+        handle:close()
+        return result ~= ""
+    end
+end
+
+-- Kill a process
+function EasyLua.killProcess(process)
+    if EasyLua.getOS() == "Windows" then
+        os.execute("taskkill /F /IM " .. process)
+    else
+        os.execute("pkill " .. process)
+    end
+end
+
+-- Get the username of the current user
+function EasyLua.getUsername()
+    if EasyLua.getOS() == "Windows" then
+        return os.getenv("USERNAME")
+    else
+        return os.getenv("USER")
+    end
+end
+
+-- Get the hostname of the system
+function EasyLua.getHostname()
+    if EasyLua.getOS() == "Windows" then
+        return EasyLua.execute("hostname"):gsub("\n", "")
+    else
+        return EasyLua.execute("hostname -s"):gsub("\n", "")
+    end
+end
+
+-- Get the uptime of the system
+function EasyLua.getUptime()
+    if EasyLua.getOS() == "Windows" then
+        local handle = io.popen("net stats workstation")
+        local result = handle:read("*a")
+        handle:close()
+        return result:match("Statistics since (.+)")
+    else
+        return EasyLua.execute("uptime -p"):gsub("\n", "")
+    end
+end
+
+-- Get the local IP address of the system
+function EasyLua.getLocalIP()
+    if EasyLua.getOS() == "Windows" then
+        local handle = io.popen("ipconfig | findstr /i \"IPv4\"")
+        local result = handle:read("*a")
+        handle:close()
+        return result:match("(%d+%.%d+%.%d+%.%d+)")
+    else
+        local handle = io.popen("hostname -I")
+        local result = handle:read("*a")
+        handle:close()
+        return result:match("(%d+%.%d+%.%d+%.%d+)")
+    end
+end
+
+-- Get the public IP address of the system
+function EasyLua.checkInternet()
+    if EasyLua.getOS() == "Windows" then
+        return os.execute("ping -n 1 google.com >nul 2>&1") == 0
+    else
+        return os.execute("ping -c 1 google.com >/dev/null 2>&1") == 0
+    end
+end
+
+-- Show a desktop notification
+function EasyLua.notify(title, message)
+    if EasyLua.getOS() == "Windows" then
+        os.execute(string.format('powershell -command "& {[System.Reflection.Assembly]::LoadWithPartialName(\'System.Windows.Forms\'); [System.Windows.Forms.MessageBox]::Show(\'%s\', \'%s\');}"', message, title))
+    else
+        os.execute(string.format('notify-send "%s" "%s"', title, message))
+    end
+end
+
+-- Get the current date and time as a timestamp
+function EasyLua.getTimestamp()
+    return os.date("%Y-%m-%d %H:%M:%S")
+end
+
+-- Get the timezone of the system
+function EasyLua.getTimezone()
+    if EasyLua.getOS() == "Windows" then
+        return EasyLua.execute("systeminfo | findstr /C:\"Time Zone\""):gsub("\n", "")
+    else
+        return EasyLua.execute("date +%Z"):gsub("\n", "")
+    end
+end
+
+-- Shutdown the system
+function EasyLua.shutdown()
+    if EasyLua.getOS() == "Windows" then
+        os.execute("shutdown /s /t 0")
+    else
+        os.execute("shutdown now")
+    end
+end
+
+-- Restart the system
+function EasyLua.restart()
+    if EasyLua.getOS() == "Windows" then
+        os.execute("shutdown /r /t 0")
+    else
+        os.execute("reboot")
+    end
+end
+
+-- Get the CPU usage of the system (basic)
+function EasyLua.getCPUUsage()
+    if EasyLua.getOS() == "Windows" then
+        local handle = io.popen("wmic cpu get loadpercentage")
+        local result = handle:read("*a")
+        handle:close()
+        return tonumber(result:match("%d+"))
+    else
+        local handle = io.popen("top -bn1 | grep 'Cpu(s)' | awk '{print $2}'")
+        local result = handle:read("*a")
+        handle:close()
+        return tonumber(result)
+    end
+end
+
+-- Get the memory usage of the system (basic)
+function EasyLua.getMemoryUsage()
+    if EasyLua.getOS() == "Windows" then
+        local handle = io.popen("wmic OS get FreePhysicalMemory,TotalVisibleMemorySize")
+        local result = handle:read("*a")
+        handle:close()
+        local free, total = result:match("(%d+)%s+(%d+)")
+        return (1 - (tonumber(free) / tonumber(total))) * 100
+    else
+        local handle = io.popen("free | grep Mem | awk '{print $3/$2 * 100}'")
+        local result = handle:read("*a")
+        handle:close()
+        return tonumber(result)
+    end
+end
+
 ---------------------
 -- Advanced Utilities
 ---------------------
