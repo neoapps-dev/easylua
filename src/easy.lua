@@ -23,6 +23,35 @@ function EasyLua.writeFile(path, content)
     return true
 end
 
+-- Append to a file
+function EasyLua.appendFile(path, content)
+    local file, err = io.open(path, "a")
+    if not file then return nil, err end
+    file:write(content)
+    file:close()
+    return true
+end
+
+-- Check if a file exists
+function EasyLua.fileExists(path)
+    local file = io.open(path, "r")
+    if file then
+        file:close()
+        return true
+    end
+    return false
+end
+
+-- Delete a file
+function EasyLua.deleteFile(path)
+    return os.remove(path)
+end
+
+-- Rename a file
+function EasyLua.renameFile(oldPath, newPath)
+    return os.rename(oldPath, newPath)
+end
+
 ---------------------
 -- JSON Utilities
 -- Uses dkjson library
@@ -68,6 +97,18 @@ end
 -- Check if a number is odd
 function EasyLua.isOdd(num)
     return num % 2 ~= 0
+end
+
+-- Get the absolute value of a number
+function EasyLua.abs(num)
+    return math.abs(num)
+end
+
+-- Get the factorial of a number
+function EasyLua.factorial(num)
+    if num < 0 then return nil end
+    if num == 0 then return 1 end
+    return num * EasyLua.factorial(num - 1)
 end
 
 ---------------------
@@ -118,6 +159,36 @@ function EasyLua.reverse(str)
     return str:reverse()
 end
 
+-- Count occurrences of a substring in a string
+function EasyLua.countSubstring(str, substring)
+    local count = 0
+    for _ in str:gmatch(substring) do
+        count = count + 1
+    end
+    return count
+end
+
+-- Replace all occurrences of a substring in a string
+function EasyLua.replace(str, old, new)
+    return str:gsub(old, new)
+end
+
+-- Check if a string is empty or whitespace
+function EasyLua.isBlank(str)
+    return str:match("^%s*$") ~= nil
+end
+
+-- Generate a random string of a given length
+function EasyLua.randomString(length)
+    local chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    local result = ""
+    for i = 1, length do
+        local rand = math.random(#chars)
+        result = result .. chars:sub(rand, rand)
+    end
+    return result
+end
+
 ---------------------
 -- Table Utilities
 ---------------------
@@ -166,6 +237,29 @@ function EasyLua.tableContains(tbl, value)
     return false
 end
 
+-- Get the size of a table
+function EasyLua.tableSize(tbl)
+    local count = 0
+    for _ in pairs(tbl) do count = count + 1 end
+    return count
+end
+
+-- Flatten a nested table into a single-level table
+function EasyLua.flattenTable(tbl)
+    local result = {}
+    local function flatten(t)
+        for _, v in pairs(t) do
+            if type(v) == "table" then
+                flatten(v)
+            else
+                table.insert(result, v)
+            end
+        end
+    end
+    flatten(tbl)
+    return result
+end
+
 ---------------------
 -- Math Utilities
 ---------------------
@@ -189,6 +283,132 @@ function EasyLua.isPrime(num)
         end
     end
     return true
+end
+
+-- Calculate the sum of a table of numbers
+function EasyLua.sum(tbl)
+    local total = 0
+    for _, v in pairs(tbl) do
+        total = total + v
+    end
+    return total
+end
+
+-- Calculate the average of a table of numbers
+function EasyLua.average(tbl)
+    return EasyLua.sum(tbl) / EasyLua.tableSize(tbl)
+end
+
+-- Calculate the greatest common divisor (GCD) of two numbers
+function EasyLua.gcd(a, b)
+    while b ~= 0 do
+        a, b = b, a % b
+    end
+    return a
+end
+
+-- Calculate the least common multiple (LCM) of two numbers
+function EasyLua.lcm(a, b)
+    return (a * b) / EasyLua.gcd(a, b)
+end
+
+---------------------
+-- Date/Time Utilities
+---------------------
+
+-- Get the current date and time as a string
+function EasyLua.currentDateTime()
+    return os.date("%Y-%m-%d %H:%M:%S")
+end
+
+-- Format a timestamp into a custom string
+function EasyLua.formatTimestamp(timestamp, format)
+    return os.date(format or "%Y-%m-%d %H:%M:%S", timestamp)
+end
+
+---------------------
+-- File System Utilities
+---------------------
+
+-- List files in a directory
+function EasyLua.listFiles(dir)
+    local files = {}
+    local pfile = io.popen('ls "' .. dir .. '" 2>/dev/null') -- Unix-like systems
+    if not pfile then
+        pfile = io.popen('dir /b "' .. dir .. '"') -- Windows
+        if not pfile then
+            pfile = io.popen('ls "' .. dir .. '"') -- Special case: Windows with GNU coreutils (mine lmao)
+        end
+    end
+    if pfile then
+        for file in pfile:lines() do
+            table.insert(files, file)
+        end
+        pfile:close()
+    end
+    return files
+end
+
+-- Create a directory
+function EasyLua.createDir(path)
+    if os.execute("mkdir " .. path) then
+        return true
+    end
+    return false
+end
+
+-- Delete a directory
+function EasyLua.deleteDir(path)
+    if os.execute("rm -rf " .. path) then -- Unix-like systems
+        return true
+    elseif os.execute("rmdir /s /q " .. path) then -- Windows
+        return true
+    end
+    return false
+end
+
+---------------------
+-- System Utilities
+---------------------
+
+-- Execute a shell command and return the output
+function EasyLua.execute(command)
+    local handle = io.popen(command)
+    local result = handle:read("*a")
+    handle:close()
+    return result
+end
+
+-- Get the current working directory
+function EasyLua.getCurrentDir()
+    return EasyLua.execute("cd"):gsub("\n", "")
+end
+
+-- Get the operating system name
+function EasyLua.getOS()
+    return package.config:sub(1, 1) == "\\" and "Windows" or "Unix-like"
+end
+
+---------------------
+-- Advanced Utilities
+---------------------
+
+-- Generate a UUID (v4)
+function EasyLua.generateUUID()
+    local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+    return string.gsub(template, "[xy]", function(c)
+        local v = (c == "x") and math.random(0, 15) or math.random(8, 11)
+        return string.format("%x", v)
+    end)
+end
+
+-- Hash a string using a simple algorithm (for lightweight use)
+function EasyLua.hashString(str)
+    local hash = 5381
+    for i = 1, #str do
+        hash = hash * 33 + str:byte(i)
+    end
+    return hash
 end
 
 return EasyLua
