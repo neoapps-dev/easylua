@@ -381,7 +381,7 @@ end
 
 -- Get the operating system name
 function EasyLua.getOS()
-    return package.config:sub(1, 1) == "\\" and "Windows" or "Unix-like"
+    return package.config:sub(1, 1) == "/" and "Unix-like" or "Windows"
 end
 
 ---------------------
