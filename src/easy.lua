@@ -406,4 +406,11 @@ function EasyLua.hashString(str)
     return hash
 end
 
+-- Assert a condition is true, otherwise raise an error
+function EasyLua.assert(condition, message)
+    if not condition then
+        error("[ERROR] " .. message)
+    end
+end
+
 return EasyLua

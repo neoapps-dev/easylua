@@ -27,7 +27,7 @@ To install EasyLua, follow these steps:
 
 ## Usage
 
-Documentation coming soon, try to understand the easy code :)
+Check out the [DOCS.md](DOCS.md) file for every function.
 
 ## Contributing
 
