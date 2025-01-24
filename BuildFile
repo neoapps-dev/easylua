@@ -1,0 +1,57 @@
+# BuildFile for EasyLua project
+
+pack:windows {
+@echo off
+echo Packing EasyLua as a one file...
+md build
+cd build
+move ..\src\* .
+move ..\deps\* .
+ren easy.lua framework.lua
+lua -e "local output_file = 'easy.lua'; local input_files = {'dkjson.lua'}; local command = (package.config:sub(1,1) == '\\') and 'dir /b *.lua' or 'ls *.lua 2>/dev/null'; local handle = io.popen(command); if handle then for file in handle:lines() do if file ~= 'dkjson.lua' then table.insert(input_files, file) end end handle:close() else print('Failed to list files') return end; local output = io.open(output_file, 'w'); if not output then print('Failed to open output file: ' .. output_file) return end; for _, file in ipairs(input_files) do local input = io.open(file, 'r'); if input then output:write('-- Begin file: ' .. file .. '\\n'); output:write(input:read('*a')); output:write('\\n-- End file: ' .. file .. '\\n\\n'); input:close() else print('Failed to open file: ' .. file) end end; output:close(); print('Files merged into ' .. output_file)"
+cd ..
+md dist
+cd dist
+move ..\build\easy.lua .
+cd ..
+del /Q build
+echo Packed EasyLua in ./dist/easy.lua!
+}
+
+pack:macos {
+#!/bin/bash
+echo Packing EasyLua as a one file...
+mkdir build
+cd build
+mv ../src/* .
+mv ../deps/* .
+mv easy.lua framework.lua
+lua -e "local output_file = 'easy.lua'; local input_files = {'dkjson.lua'}; local command = (package.config:sub(1,1) == '\\') and 'dir /b *.lua' or 'ls *.lua 2>/dev/null'; local handle = io.popen(command); if handle then for file in handle:lines() do if file ~= 'dkjson.lua' then table.insert(input_files, file) end end handle:close() else print('Failed to list files') return end; local output = io.open(output_file, 'w'); if not output then print('Failed to open output file: ' .. output_file) return end; for _, file in ipairs(input_files) do local input = io.open(file, 'r'); if input then output:write('-- Begin file: ' .. file .. '\\n'); output:write(input:read('*a')); output:write('\\n-- End file: ' .. file .. '\\n\\n'); input:close() else print('Failed to open file: ' .. file) end end; output:close(); print('Files merged into ' .. output_file)"
+cd ..
+mkdir dist
+cd dist
+mv ../build/easy.lua .
+rm -rf ../build
+cd ..
+echo Packed EasyLua in ./dist/easy.lua!
+}
+
+test:lignux {
+#!/bin/bash
+# Do not run this command unless you have done buildit pack.
+
+cp test/test.lua dist/
+cd test
+lua test.lua
+cd ..
+rm dist/test.lua
+}
+
+test:windows {
+@echo off
+cd dist
+copy ..\test\test.lua .\test.lua /Q
+lua test.lua
+cd ..
+del /Q dist\test.lua
+}
