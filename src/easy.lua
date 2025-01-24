@@ -376,7 +376,8 @@ end
 
 -- Get the current working directory
 function EasyLua.getCurrentDir()
-    return EasyLua.execute("cd"):gsub("\n", "")
+    local command = (package.config:sub(1,1) == '/') and "pwd" or "cd"
+    return EasyLua.execute(command):gsub("\n", "")
 end
 
 -- Get the operating system name
