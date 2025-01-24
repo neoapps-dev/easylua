@@ -1,3 +1,7 @@
 # ignores prebuilt binary lol
 dist
 dist/*
+temp.bat
+temp.sh
+build/*
+build

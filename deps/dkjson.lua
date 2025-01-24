@@ -64,7 +64,7 @@ if register_global_module_table then
   end
 end
 
-local _ENV = nil -- blocking globals in Lua 5.2 and later
+-- local _ENV = nil -- blocking globals in Lua 5.2 and later
 
 pcall (function()
   -- Enable access to blocked metatables.
@@ -747,6 +747,4 @@ end
 if always_use_lpeg then
   return json.use_lpeg()
 end
-
-return json
 

@@ -2,11 +2,6 @@
 local EasyLua = {}
 
 ---------------------
--- Dependencies
----------------------
-local json = require("dkjson") -- Robust JSON library
-
----------------------
 -- Cross-platform I/O
 ---------------------
 
@@ -29,7 +24,8 @@ function EasyLua.writeFile(path, content)
 end
 
 ---------------------
--- JSON (using dkjson)
+-- JSON Utilities
+-- Uses dkjson library
 ---------------------
 
 -- Encode a table to JSON

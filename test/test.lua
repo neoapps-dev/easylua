@@ -1,5 +1,5 @@
 -- main.lua
-local EasyLua = require("/../deps/easy")
+local EasyLua = require("easy")
 
 -- I/O Example
 EasyLua.writeFile("test.txt", "Hello, EasyLua!")
