@@ -105,14 +105,14 @@ Handle time-related operations effortlessly:
 Load the module and start using its utilities:
 
 ```lua
-local EasyLua = require("easylua")
+local Easy = require("easy")
 
 -- Example: Reading a file
-local content = EasyLua.readFile("example.txt")
+local content = Easy.Lua.readFile("example.txt")
 print(content)
 
 -- Example: JSON Encoding
-local jsonString = EasyLua.jsonEncode({ key = "value" })
+local jsonString = Easy.Lua.jsonEncode({ key = "value" })
 print(jsonString)
 ```
 
