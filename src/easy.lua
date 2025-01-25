@@ -590,4 +590,4 @@ function EasyLua.try(f, catch_f)
 end
     
 
-return { OOP = OOP, Lua = EasyLua }
+return { OOP = OOP, Lua = EasyLua, Queue = Queue, DB = DB }

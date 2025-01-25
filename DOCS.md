@@ -1138,3 +1138,83 @@ student:study()  -- Specific to Student
 - **`constructor`**: The constructor is a method you can define in your classes to initialize instance properties. It is optional and can be customized for each class.
 - **Inheritance**: Classes that inherit from other classes automatically have access to the methods and properties of the parent class. Use `OOP.extends(child_class, parent_class)` to enable inheritance.
 - **Instance Creation**: The `new()` function creates instances of classes and can be used with `OOP.class`-created classes. Instances can then access methods defined in their class.
+
+## `EasyQueue`
+
+A simple Queue system integrated into EasyLua.
+
+### `Easy.Queue.new()`
+
+Makes a new EasyQueue.
+
+- **Returns:**
+  - A new EasyQueue
+
+### `Easy.Queue.addTask(task)`
+
+Adds a task to EasyQueue
+
+- **Parameters:**
+  - `task` (function): The task to execute.
+
+### `Easy.Queue.startWorker()`
+
+Starts a worker for the task in index 1.
+
+### Full Usage
+
+```lua
+local Easy = require("easy")
+local queue = Easy.Queue.new()
+queue:addTask(function() print("Task 1 executed") end)
+queue:addTask(function() print("Task 2 executed") end)
+queue:startWorker()
+queue:startWorker() -- or, use a loop to run through all of them
+```
+
+## `EasyDB`
+
+A simple KV Database that stores in the memory.
+
+### `Easy.DB.new()`
+
+Make a new EasyDB
+
+- **Returns**:
+  - A new EasyDB
+
+### `Easy.DB.set(key, value)`
+
+Sets [key] to specific [value]
+
+- **Parameters**:
+  - `key` (string): The key of the value.
+  - `value` (any): The value of the key.
+
+### `Easy.DB.get(key)`
+
+Gets the value of [key]
+
+- **Parameters**:
+  - `key` (string): The key of the value.
+
+- **Returns**:
+  - (any) The value of the key.
+
+### `Easy.DB.delete(key)`
+
+Deletes [key] off the EasyDB.
+
+- **Parameters**:
+  - `key` (string): The key of the value.
+
+### Final Usage
+
+```lua
+local Easy = require("easy")
+local db = Easy.DB.new()
+db:set("name", "John")
+print(db:get("name"))  -- Output: John
+db:delete("name")
+print(db:get("name"))  -- Output: nil
+```
