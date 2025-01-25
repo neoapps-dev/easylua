@@ -19,14 +19,27 @@ echo Packed EasyLua in ./dist/easy.lua!
 }
 
 pack:lignux {
-#!/bin/bash
+#!/bin/sh
 echo Packing EasyLua as a one file...
 mkdir build
 cd build
 cp ../src/* .
 cp ../deps/* .
 mv easy.lua framework.lua
-lua -e "local output_file = 'easy.lua'; local input_files = {'dkjson.lua'}; local command = (package.config:sub(1,1) == '\\') and 'dir /b *.lua' or 'ls *.lua 2>/dev/null'; local handle = io.popen(command); if handle then for file in handle:lines() do if file ~= 'dkjson.lua' then table.insert(input_files, file) end end handle:close() else print('Failed to list files') return end; local output = io.open(output_file, 'w'); if not output then print('Failed to open output file: ' .. output_file) return end; for _, file in ipairs(input_files) do local input = io.open(file, 'r'); if input then output:write('-- Begin file: ' .. file .. '\n'); output:write(input:read('*a')); output:write('\n-- End file: ' .. file .. '\n\n'); input:close() else print('Failed to open file: ' .. file) end end; output:close(); print('Files merged into ' .. output_file)"
+output_file="easy.lua"
+exclude_file="dkjson.lua"
+> "$output_file"
+for file in *.lua; do
+  [ -e "$file" ] || { echo "No .lua files found."; exit 1; }
+  [ "$file" = "$exclude_file" ] && continue
+  {
+    echo "-- Begin file: $file"
+    cat "$file"
+    echo "-- End file: $file"
+    echo
+  } >> "$output_file"
+done
+echo "Files merged into $output_file"
 cd ..
 mkdir dist
 cd dist
@@ -37,14 +50,27 @@ echo Packed EasyLua in ./dist/easy.lua!
 }
 
 pack:macos {
-#!/bin/zsh
+#!/bin/sh
 echo Packing EasyLua as a one file...
 mkdir build
 cd build
 cp ../src/* .
 cp ../deps/* .
 mv easy.lua framework.lua
-lua -e "local output_file = 'easy.lua'; local input_files = {'dkjson.lua'}; local command = (package.config:sub(1,1) == '\\') and 'dir /b *.lua' or 'ls *.lua 2>/dev/null'; local handle = io.popen(command); if handle then for file in handle:lines() do if file ~= 'dkjson.lua' then table.insert(input_files, file) end end handle:close() else print('Failed to list files') return end; local output = io.open(output_file, 'w'); if not output then print('Failed to open output file: ' .. output_file) return end; for _, file in ipairs(input_files) do local input = io.open(file, 'r'); if input then output:write('-- Begin file: ' .. file .. '\n'); output:write(input:read('*a')); output:write('\n-- End file: ' .. file .. '\n\n'); input:close() else print('Failed to open file: ' .. file) end end; output:close(); print('Files merged into ' .. output_file)"
+output_file="easy.lua"
+exclude_file="dkjson.lua"
+> "$output_file"
+for file in *.lua; do
+  [ -e "$file" ] || { echo "No .lua files found."; exit 1; }
+  [ "$file" = "$exclude_file" ] && continue
+  {
+    echo "-- Begin file: $file"
+    cat "$file"
+    echo "-- End file: $file"
+    echo
+  } >> "$output_file"
+done
+echo "Files merged into $output_file"
 cd ..
 mkdir dist
 cd dist
