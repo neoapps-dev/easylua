@@ -478,6 +478,7 @@ function EasyLua.checkInternet()
 end
 
 -- Show a desktop notification
+-- Thanks to https://gist.github.com/dend/5ae8a70678e3a35d02ecd39c12f99110 for the windows method :)
 function EasyLua.notify(title, message)
     if EasyLua.getOS() == "Windows" then
         os.execute(string.format(
