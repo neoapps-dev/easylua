@@ -361,4 +361,50 @@ local student = Student:new("Alex", 20, "A")
 student:greet()  -- Inherited from Person
 student:study()  -- Specific to Student
 
-print("=== DONE ===")
+print("\n=== All OOP tests done! ===\n")
+
+---------------------
+-- Queue Tests
+---------------------
+
+printTestHeader("Queue Tests")
+
+local queue = Easy.Queue.new()
+
+queue:addTask(function() print("Task 1") end)
+queue:addTask(function() print("Task 2") end)
+queue:addTask(function() print("Task 3") end)
+queue:startWorker() -- do task 1
+queue:startWorker() -- do task 2
+queue:startWorker() -- do task 3
+
+print("\n=== All queue tests done! ===\n")
+
+---------------------
+-- DB Tests
+---------------------
+
+printTestHeader("DB Tests")
+
+local db = Easy.DB.new()
+
+db:set("name", "John")
+db:set("age", 30)
+
+local name = db:get("name")
+local age = db:get("age")
+
+print("Name: " .. name)
+print("Age: " .. age)
+
+db:delete("name")
+
+print("Name: " .. db:get("name"))
+
+print("\n=== All DB tests done! ===\n")
+
+---------------------
+-- Final Message
+---------------------
+
+print("\n=== DONE ===\n")
