@@ -422,6 +422,35 @@ end)
 print("\n=== All DB tests done! ===\n")
 
 ---------------------
+-- HTTP Tests
+---------------------
+
+printTestHeader("HTTP Tests")
+
+Easy.HTTP.get("https://reqres.in/api/users/1", nil, nil, function(response)
+    print("\n--- GET Request Response ---")
+    print(response)
+end)
+
+local jsonData = '{"name": "John", "job": "Developer"}'
+Easy.HTTP.post("https://reqres.in/api/users", "Content-Type: application/json", jsonData, function(response)
+    print("\n--- POST Request Response ---")
+    print(response)
+end)
+
+local updatedData = '{"name": "Jane", "job": "Manager"}'
+Easy.HTTP.put("https://reqres.in/api/users/2", "Content-Type: application/json", updatedData, function(response)
+    print("\n--- PUT Request Response ---")
+    print(response)
+end)
+
+Easy.HTTP.delete("https://reqres.in/api/users/2", nil, nil, function(response)
+    print("\n--- DELETE Request Response ---")
+    print(response)
+end)
+
+
+---------------------
 -- Final Messages
 ---------------------
 

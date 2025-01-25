@@ -1260,3 +1260,87 @@ print(db:get("name"))  -- Output: John
 db:delete("name")
 print(db:get("name"))  -- Output: nil
 ```
+
+---
+
+Here's the documentation for the **EasyHTTP** module using the APIs we just discussed (ReqRes.in, Postman Echo, and JSONPlaceholder). This includes function descriptions and example usage for each HTTP method.
+
+---
+
+## `EasyHTTP`
+
+### Functions for EasyHTTP
+
+#### 1. **Easy.HTTP.get(url, headers, body, callback)**
+
+- **Description**: Sends a `GET` request to the specified URL. Optionally includes headers and body data.
+- **Parameters**:
+  - `url`: (string) The URL to send the request to.
+  - `headers`: (string) Optional headers to include in the request. Example: `"Content-Type: application/json"`.
+  - `body`: (string) Optional data to send with the `GET` request.
+  - `callback`: (function) A function that will be called with the server's response once the request is complete. The response is passed as a parameter to this function.
+- **Returns**: Nothing (the response is passed to the callback function).
+
+##### Example Usage
+
+```lua
+Easy.HTTP.get("https://reqres.in/api/users/1", nil, nil, function(response)
+    print("GET Response:", response)
+end)
+```
+
+#### 2. **Easy.HTTP.post(url, headers, body, callback)**
+
+- **Description**: Sends a `POST` request to the specified URL with optional headers and body data.
+- **Parameters**:
+  - `url`: (string) The URL to send the request to.
+  - `headers`: (string) Optional headers to include in the request. Example: `"Content-Type: application/json"`.
+  - `body`: (string) The data to send with the `POST` request, usually in JSON format.
+  - `callback`: (function) A function that will be called with the server's response once the request is complete. The response is passed as a parameter to this function.
+- **Returns**: Nothing (the response is passed to the callback function).
+
+##### Example Usage
+
+```lua
+local jsonData = '{"name": "John", "job": "Developer"}'
+Easy.HTTP.post("https://reqres.in/api/users", "Content-Type: application/json", jsonData, function(response)
+    print("POST Response:", response)
+end)
+```
+
+#### 3. **Easy.HTTP.put(url, headers, body, callback)**
+
+- **Description**: Sends a `PUT` request to the specified URL with optional headers and body data. Simulates a successful response as **JSONPlaceholder** and **Postman Echo** do not persist data.
+- **Parameters**:
+  - `url`: (string) The URL to send the request to.
+  - `headers`: (string) Optional headers to include in the request. Example: `"Content-Type: application/json"`.
+  - `body`: (string) The data to send with the `PUT` request, usually in JSON format.
+  - `callback`: (function) A function that will be called with the server's response once the request is complete. The response is passed as a parameter to this function.
+- **Returns**: Nothing (the response is passed to the callback function).
+
+##### Example Usage
+
+```lua
+local updatedData = '{"name": "Jane", "job": "Manager"}'
+Easy.HTTP.put("https://reqres.in/api/users/2", "Content-Type: application/json", updatedData, function(response)
+    print("PUT Response:", response)
+end)
+```
+
+#### 4. **Easy.HTTP.delete(url, headers, body, callback)**
+
+- **Description**: Sends a `DELETE` request to the specified URL with optional headers and body data. Simulates a successful deletion for **JSONPlaceholder** and **Postman Echo**.
+- **Parameters**:
+  - `url`: (string) The URL to send the request to.
+  - `headers`: (string) Optional headers to include in the request. Example: `"Content-Type: application/json"`.
+  - `body`: (string) Optional data to send with the `DELETE` request.
+  - `callback`: (function) A function that will be called with the server's response once the request is complete. The response is passed as a parameter to this function.
+- **Returns**: Nothing (the response is passed to the callback function).
+
+##### Example Usage
+
+```lua
+Easy.HTTP.delete("https://reqres.in/api/users/2", nil, nil, function(response)
+    print("DELETE Response:", response)
+end)
+```
