@@ -984,6 +984,19 @@ Try-catching in a new syntax!
   - `f` (function): Function to try
   - `catch_f` (function(exception)): Catching function (with the exception)
 
+### `Easy.Lua.Reactive(value)`
+
+Reactive objects with subscribing to changes, changing value and more!
+
+- **Parameters**:
+  - `value` (any): The initial value of the reactive object
+
+- **Returns**:
+  - A reactive object with the following:
+    - object:subscribe(function(value)): Subscribe to changes in value.
+    - object:set(value): Changes the value of the object.
+    - object:get(): Gets the current latest value.
+
 ## Examples
 
 ### Example 1: Reading and Writing Files

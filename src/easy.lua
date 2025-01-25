@@ -588,6 +588,26 @@ function EasyLua.try(f, catch_f)
         catch_f(exception)
     end
 end
-    
+
+-- Reactive object, subscribing to changes, etc..
+function EasyLua.Reactive(value)
+    local observers = {}
+    local obj = {
+        value = value,
+        subscribe = function(self, callback)
+            table.insert(observers, callback)
+        end,
+        set = function(self, newValue)
+            self.value = newValue
+            for _, callback in ipairs(observers) do
+                callback(self.value)
+            end
+        end,
+        get = function(self)
+            return self.value
+        end
+    }
+    return obj
+end 
 
 return { OOP = OOP, Lua = EasyLua, Queue = Queue, DB = DB }

@@ -316,6 +316,19 @@ end
 
 Easy.Lua.try(riskyOperation, handleException) -- try-catch
 
+local counter = Easy.Lua.Reactive(0)
+
+counter:subscribe(function(value)
+    if value == 9 then
+        print("Counter reached 9!")
+    else
+    print("Counter value: " .. value)
+    end
+end)
+
+counter:set(1)
+counter:set(9)
+
 print("All advanced tests passed!")
 
 ---------------------
