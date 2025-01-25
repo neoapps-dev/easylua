@@ -610,4 +610,4 @@ function EasyLua.Reactive(value)
     return obj
 end 
 
-return { OOP = OOP, Lua = EasyLua, Queue = Queue, DB = DB }
+return { OOP = OOP, Lua = EasyLua, Queue = Queue, DB = DB, Log = EasyLogging }

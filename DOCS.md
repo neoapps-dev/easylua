@@ -997,6 +997,35 @@ Reactive objects with subscribing to changes, changing value and more!
     - object:set(value): Changes the value of the object.
     - object:get(): Gets the current latest value.
 
+### `Easy.Log.%s(message)`, %s = Log level
+
+Logs a message with the log level and the message.
+
+- **Parameters**:
+  - `message` (string): The message to log.
+
+```lua
+Easy.Log.log(Easy.Log.levels["INFO"], "All tests passed!") -- syntax 1
+Easy.Log.trace("This is a trace message") -- syntax 2
+Easy.Log.debug("This is a debug message")
+Easy.Log.info("This is an info message")
+Easy.Log.warn("This is a warning message")
+Easy.Log.error("This is an error message")
+Easy.Log.fatal("This is a fatal message")
+```
+
+Output: (colored inside the terminal)
+
+```lua
+2025-01-25 16:29:55 [INFO] All tests passed!
+2025-01-25 16:29:55 [TRACE] This is a trace message
+2025-01-25 16:29:55 [DEBUG] This is a debug message
+2025-01-25 16:29:55 [INFO] This is an info message
+2025-01-25 16:29:55 [WARN] This is a warning message
+2025-01-25 16:29:55 [ERROR] This is an error message
+2025-01-25 16:29:55 [FATAL] This is a fatal message
+```
+
 ## Examples
 
 ### Example 1: Reading and Writing Files
