@@ -277,7 +277,7 @@ local internet = EasyLua.checkInternet()
 EasyLua.assert(internet == true or internet == false, "Failed to check internet connectivity.")
 
 -- Send a desktop notification
-EasyLua.notify("Test", "This is a test notification.")
+EasyLua.notify("EasyLua Test", "Test", "This is a test notification.")
 
 -- Get the current timestamp
 local timestamp = EasyLua.getTimestamp()
