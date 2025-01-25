@@ -64,7 +64,7 @@ if register_global_module_table then
   end
 end
 
--- local _ENV = nil -- removed for EasyLua. If this module isn't usable just uncomment this line.
+-- local _ENV = nil -- removed for Easy.Lua. If this module isn't usable just uncomment this line.
 
 pcall (function()
   -- Enable access to blocked metatables.

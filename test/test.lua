@@ -1,5 +1,5 @@
 -- test_easylua.lua
-local EasyLua = require("easy")
+local Easy = require("easy")
 
 ---------------------
 -- Helper Functions
@@ -16,28 +16,28 @@ end
 printTestHeader("I/O Tests")
 
 -- Write to a file
-local writeSuccess = EasyLua.writeFile("test.txt", "Hello, EasyLua!")
-EasyLua.assert(writeSuccess, "Failed to write to file.")
+local writeSuccess = Easy.Lua.writeFile("test.txt", "Hello, EasyLua!")
+Easy.Lua.assert(writeSuccess, "Failed to write to file.")
 
 -- Read from a file
-local content = EasyLua.readFile("test.txt")
-EasyLua.assert(content == "Hello, EasyLua!", "Failed to read from file.")
+local content = Easy.Lua.readFile("test.txt")
+Easy.Lua.assert(content == "Hello, EasyLua!", "Failed to read from file.")
 
 -- Append to a file
-local appendSuccess = EasyLua.appendFile("test.txt", "\nAppended text!")
-EasyLua.assert(appendSuccess, "Failed to append to file.")
+local appendSuccess = Easy.Lua.appendFile("test.txt", "\nAppended text!")
+Easy.Lua.assert(appendSuccess, "Failed to append to file.")
 
 -- Check if file exists
-local fileExists = EasyLua.fileExists("test.txt")
-EasyLua.assert(fileExists, "File does not exist.")
+local fileExists = Easy.Lua.fileExists("test.txt")
+Easy.Lua.assert(fileExists, "File does not exist.")
 
 -- Rename a file
-local renameSuccess = EasyLua.renameFile("test.txt", "test_renamed.txt")
-EasyLua.assert(renameSuccess, "Failed to rename file.")
+local renameSuccess = Easy.Lua.renameFile("test.txt", "test_renamed.txt")
+Easy.Lua.assert(renameSuccess, "Failed to rename file.")
 
 -- Delete a file
-local deleteSuccess = EasyLua.deleteFile("test_renamed.txt")
-EasyLua.assert(deleteSuccess, "Failed to delete file.")
+local deleteSuccess = Easy.Lua.deleteFile("test_renamed.txt")
+Easy.Lua.assert(deleteSuccess, "Failed to delete file.")
 
 print("All I/O tests passed!")
 
@@ -49,12 +49,12 @@ printTestHeader("JSON Tests")
 
 -- Encode a table to JSON
 local data = { name = "Lua", version = "5.4", features = { "lightweight", "fast" } }
-local json = EasyLua.toJSON(data, true)
-EasyLua.assert(json ~= nil, "Failed to encode table to JSON.")
+local json = Easy.Lua.toJSON(data, true)
+Easy.Lua.assert(json ~= nil, "Failed to encode table to JSON.")
 
 -- Decode JSON to a table
-local decoded = EasyLua.fromJSON(json)
-EasyLua.assert(decoded.name == "Lua", "Failed to decode JSON to table.")
+local decoded = Easy.Lua.fromJSON(json)
+Easy.Lua.assert(decoded.name == "Lua", "Failed to decode JSON to table.")
 
 print("All JSON tests passed!")
 
@@ -65,30 +65,30 @@ print("All JSON tests passed!")
 printTestHeader("Integer Tests")
 
 -- Check if a number is an integer
-EasyLua.assert(EasyLua.isInteger(42), "42 should be an integer.")
-EasyLua.assert(not EasyLua.isInteger(42.5), "42.5 should not be an integer.")
+Easy.Lua.assert(Easy.Lua.isInteger(42), "42 should be an integer.")
+Easy.Lua.assert(not Easy.Lua.isInteger(42.5), "42.5 should not be an integer.")
 
 -- Generate a random integer
-local random = EasyLua.randomInt(1, 100)
-EasyLua.assert(random >= 1 and random <= 100, "Random integer out of range.")
+local random = Easy.Lua.randomInt(1, 100)
+Easy.Lua.assert(random >= 1 and random <= 100, "Random integer out of range.")
 
 -- Convert a string to an integer
-local num = EasyLua.toInt("42")
-EasyLua.assert(num == 42, "Failed to convert string to integer.")
+local num = Easy.Lua.toInt("42")
+Easy.Lua.assert(num == 42, "Failed to convert string to integer.")
 
 -- Check if a number is even
-EasyLua.assert(EasyLua.isEven(4), "4 should be even.")
-EasyLua.assert(not EasyLua.isEven(5), "5 should not be even.")
+Easy.Lua.assert(Easy.Lua.isEven(4), "4 should be even.")
+Easy.Lua.assert(not Easy.Lua.isEven(5), "5 should not be even.")
 
 -- Check if a number is odd
-EasyLua.assert(EasyLua.isOdd(5), "5 should be odd.")
-EasyLua.assert(not EasyLua.isOdd(4), "4 should not be odd.")
+Easy.Lua.assert(Easy.Lua.isOdd(5), "5 should be odd.")
+Easy.Lua.assert(not Easy.Lua.isOdd(4), "4 should not be odd.")
 
 -- Get the absolute value
-EasyLua.assert(EasyLua.abs(-10) == 10, "Absolute value of -10 should be 10.")
+Easy.Lua.assert(Easy.Lua.abs(-10) == 10, "Absolute value of -10 should be 10.")
 
 -- Calculate the factorial
-EasyLua.assert(EasyLua.factorial(5) == 120, "Factorial of 5 should be 120.")
+Easy.Lua.assert(Easy.Lua.factorial(5) == 120, "Factorial of 5 should be 120.")
 
 print("All integer tests passed!")
 
@@ -99,43 +99,43 @@ print("All integer tests passed!")
 printTestHeader("String Tests")
 
 -- Trim whitespace
-local trimmed = EasyLua.trim("  hello  ")
-EasyLua.assert(trimmed == "hello", "Failed to trim whitespace.")
+local trimmed = Easy.Lua.trim("  hello  ")
+Easy.Lua.assert(trimmed == "hello", "Failed to trim whitespace.")
 
 -- Split a string
-local parts = EasyLua.split("one,two,three", ",")
-EasyLua.assert(#parts == 3 and parts[2] == "two", "Failed to split string.")
+local parts = Easy.Lua.split("one,two,three", ",")
+Easy.Lua.assert(#parts == 3 and parts[2] == "two", "Failed to split string.")
 
 -- Check if a string starts with a prefix
-EasyLua.assert(EasyLua.startsWith("hello world", "hello"), "String should start with 'hello'.")
+Easy.Lua.assert(Easy.Lua.startsWith("hello world", "hello"), "String should start with 'hello'.")
 
 -- Check if a string ends with a suffix
-EasyLua.assert(EasyLua.endsWith("hello world", "world"), "String should end with 'world'.")
+Easy.Lua.assert(Easy.Lua.endsWith("hello world", "world"), "String should end with 'world'.")
 
 -- Convert to uppercase
-EasyLua.assert(EasyLua.toUpper("hello") == "HELLO", "Failed to convert to uppercase.")
+Easy.Lua.assert(Easy.Lua.toUpper("hello") == "HELLO", "Failed to convert to uppercase.")
 
 -- Convert to lowercase
-EasyLua.assert(EasyLua.toLower("HELLO") == "hello", "Failed to convert to lowercase.")
+Easy.Lua.assert(Easy.Lua.toLower("HELLO") == "hello", "Failed to convert to lowercase.")
 
 -- Capitalize the first letter
-EasyLua.assert(EasyLua.capitalize("easy") == "Easy", "Failed to capitalize string.")
+Easy.Lua.assert(Easy.Lua.capitalize("easy") == "Easy", "Failed to capitalize string.")
 
 -- Reverse a string
-EasyLua.assert(EasyLua.reverse("hello") == "olleh", "Failed to reverse string.")
+Easy.Lua.assert(Easy.Lua.reverse("hello") == "olleh", "Failed to reverse string.")
 
 -- Count occurrences of a substring
-EasyLua.assert(EasyLua.countSubstring("hello hello", "hello") == 2, "Failed to count substrings.")
+Easy.Lua.assert(Easy.Lua.countSubstring("hello hello", "hello") == 2, "Failed to count substrings.")
 
 -- Replace all occurrences of a substring
-EasyLua.assert(EasyLua.replace("hello world", "world", "Lua") == "hello Lua", "Failed to replace substring.")
+Easy.Lua.assert(Easy.Lua.replace("hello world", "world", "Lua") == "hello Lua", "Failed to replace substring.")
 
 -- Check if a string is blank
-EasyLua.assert(EasyLua.isBlank("   "), "String should be blank.")
+Easy.Lua.assert(Easy.Lua.isBlank("   "), "String should be blank.")
 
 -- Generate a random string
-local randomStr = EasyLua.randomString(10)
-EasyLua.assert(#randomStr == 10, "Random string should have length 10.")
+local randomStr = Easy.Lua.randomString(10)
+Easy.Lua.assert(#randomStr == 10, "Random string should have length 10.")
 
 print("All string tests passed!")
 
@@ -147,29 +147,29 @@ printTestHeader("Table Tests")
 
 -- Deep copy a table
 local original = { a = 1, b = { c = 2 } }
-local copy = EasyLua.deepCopy(original)
-EasyLua.assert(copy.b.c == 2, "Failed to deep copy table.")
+local copy = Easy.Lua.deepCopy(original)
+Easy.Lua.assert(copy.b.c == 2, "Failed to deep copy table.")
 
 -- Merge two tables
 local t1 = { a = 1, b = 2 }
 local t2 = { b = 3, c = 4 }
-local merged = EasyLua.mergeTables(t1, t2)
-EasyLua.assert(merged.b == 3 and merged.c == 4, "Failed to merge tables.")
+local merged = Easy.Lua.mergeTables(t1, t2)
+Easy.Lua.assert(merged.b == 3 and merged.c == 4, "Failed to merge tables.")
 
 -- Sort a table
-local sorted = EasyLua.sortTable({ 3, 1, 2 }, function(a, b) return a < b end)
-EasyLua.assert(sorted[1] == 1 and sorted[3] == 3, "Failed to sort table.")
+local sorted = Easy.Lua.sortTable({ 3, 1, 2 }, function(a, b) return a < b end)
+Easy.Lua.assert(sorted[1] == 1 and sorted[3] == 3, "Failed to sort table.")
 
 -- Check if a table contains a value
-EasyLua.assert(EasyLua.tableContains({ 1, 2, 3 }, 2), "Table should contain value 2.")
+Easy.Lua.assert(Easy.Lua.tableContains({ 1, 2, 3 }, 2), "Table should contain value 2.")
 
 -- Get the size of a table
-EasyLua.assert(EasyLua.tableSize({ a = 1, b = 2 }) == 2, "Table size should be 2.")
+Easy.Lua.assert(Easy.Lua.tableSize({ a = 1, b = 2 }) == 2, "Table size should be 2.")
 
 -- Flatten a nested table
 local nested = { 1, { 2, { 3, 4 } } }
-local flat = EasyLua.flattenTable(nested)
-EasyLua.assert(#flat == 4, "Failed to flatten table.")
+local flat = Easy.Lua.flattenTable(nested)
+Easy.Lua.assert(#flat == 4, "Failed to flatten table.")
 
 print("All table tests passed!")
 
@@ -180,25 +180,25 @@ print("All table tests passed!")
 printTestHeader("Math Tests")
 
 -- Clamp a number
-EasyLua.assert(EasyLua.clamp(10, 1, 5) == 5, "Clamped value should be 5.")
+Easy.Lua.assert(Easy.Lua.clamp(10, 1, 5) == 5, "Clamped value should be 5.")
 
 -- Round a number
-EasyLua.assert(EasyLua.round(3.6) == 4, "Rounded value should be 4.")
+Easy.Lua.assert(Easy.Lua.round(3.6) == 4, "Rounded value should be 4.")
 
 -- Check if a number is prime
-EasyLua.assert(EasyLua.isPrime(29), "29 should be prime.")
+Easy.Lua.assert(Easy.Lua.isPrime(29), "29 should be prime.")
 
 -- Calculate the sum of a table
-EasyLua.assert(EasyLua.sum({ 1, 2, 3, 4, 5 }) == 15, "Sum should be 15.")
+Easy.Lua.assert(Easy.Lua.sum({ 1, 2, 3, 4, 5 }) == 15, "Sum should be 15.")
 
 -- Calculate the average of a table
-EasyLua.assert(EasyLua.average({ 1, 2, 3, 4, 5 }) == 3, "Average should be 3.")
+Easy.Lua.assert(Easy.Lua.average({ 1, 2, 3, 4, 5 }) == 3, "Average should be 3.")
 
 -- Calculate the GCD
-EasyLua.assert(EasyLua.gcd(12, 18) == 6, "GCD should be 6.")
+Easy.Lua.assert(Easy.Lua.gcd(12, 18) == 6, "GCD should be 6.")
 
 -- Calculate the LCM
-EasyLua.assert(EasyLua.lcm(12, 18) == 36, "LCM should be 36.")
+Easy.Lua.assert(Easy.Lua.lcm(12, 18) == 36, "LCM should be 36.")
 
 print("All math tests passed!")
 
@@ -209,12 +209,12 @@ print("All math tests passed!")
 printTestHeader("Date/Time Tests")
 
 -- Get the current date and time
-local datetime = EasyLua.currentDateTime()
-EasyLua.assert(datetime ~= nil, "Failed to get current date and time.")
+local datetime = Easy.Lua.currentDateTime()
+Easy.Lua.assert(datetime ~= nil, "Failed to get current date and time.")
 
 -- Format a timestamp
-local formatted = EasyLua.formatTimestamp(os.time(), "%Y-%m-%d")
-EasyLua.assert(formatted ~= nil, "Failed to format timestamp.")
+local formatted = Easy.Lua.formatTimestamp(os.time(), "%Y-%m-%d")
+Easy.Lua.assert(formatted ~= nil, "Failed to format timestamp.")
 
 print("All date/time tests passed!")
 
@@ -225,16 +225,16 @@ print("All date/time tests passed!")
 printTestHeader("File System Tests")
 
 -- Create a directory
-local createDirSuccess = EasyLua.createDir("test_dir")
-EasyLua.assert(createDirSuccess, "Failed to create directory.")
+local createDirSuccess = Easy.Lua.createDir("test_dir")
+Easy.Lua.assert(createDirSuccess, "Failed to create directory.")
 
 -- List files in a directory
-local files = EasyLua.listFiles(".")
-EasyLua.assert(#files > 0, "Failed to list files in directory.")
+local files = Easy.Lua.listFiles(".")
+Easy.Lua.assert(#files > 0, "Failed to list files in directory.")
 
 -- Delete a directory
-local deleteDirSuccess = EasyLua.deleteDir("test_dir")
-EasyLua.assert(deleteDirSuccess, "Failed to delete directory.")
+local deleteDirSuccess = Easy.Lua.deleteDir("test_dir")
+Easy.Lua.assert(deleteDirSuccess, "Failed to delete directory.")
 
 print("All file system tests passed!")
 
@@ -245,47 +245,47 @@ print("All file system tests passed!")
 printTestHeader("System Tests")
 
 -- Execute a shell command
-local output = EasyLua.execute("echo Hello")
-EasyLua.assert(output:match("Hello"), "Failed to execute shell command.")
+local output = Easy.Lua.execute("echo Hello")
+Easy.Lua.assert(output:match("Hello"), "Failed to execute shell command.")
 
 -- Get the current working directory
-local cwd = EasyLua.getCurrentDir()
-EasyLua.assert(cwd ~= nil, "Failed to get current working directory.")
+local cwd = Easy.Lua.getCurrentDir()
+Easy.Lua.assert(cwd ~= nil, "Failed to get current working directory.")
 
 -- Get the operating system
-local osName = EasyLua.getOS()
-EasyLua.assert(osName == "Windows" or osName == "Unix-like", "Failed to detect OS.")
+local osName = Easy.Lua.getOS()
+Easy.Lua.assert(osName == "Windows" or osName == "Unix-like", "Failed to detect OS.")
 
 -- Get the current username
-local username = EasyLua.getUsername()
-EasyLua.assert(username ~= nil, "Failed to get username.")
+local username = Easy.Lua.getUsername()
+Easy.Lua.assert(username ~= nil, "Failed to get username.")
 
 -- Get the system's hostname
-local hostname = EasyLua.getHostname()
-EasyLua.assert(hostname ~= nil, "Failed to get hostname.")
+local hostname = Easy.Lua.getHostname()
+Easy.Lua.assert(hostname ~= nil, "Failed to get hostname.")
 
 -- Get the system's uptime
-local uptime = EasyLua.getUptime()
-EasyLua.assert(uptime ~= nil, "Failed to get uptime.")
+local uptime = Easy.Lua.getUptime()
+Easy.Lua.assert(uptime ~= nil, "Failed to get uptime.")
 
 -- Get the local IP address
-local ip = EasyLua.getLocalIP()
-EasyLua.assert(ip ~= nil, "Failed to get local IP address.")
+local ip = Easy.Lua.getLocalIP()
+Easy.Lua.assert(ip ~= nil, "Failed to get local IP address.")
 
 -- Check internet connectivity
-local internet = EasyLua.checkInternet()
-EasyLua.assert(internet == true or internet == false, "Failed to check internet connectivity.")
+local internet = Easy.Lua.checkInternet()
+Easy.Lua.assert(internet == true or internet == false, "Failed to check internet connectivity.")
 
 -- Send a desktop notification
-EasyLua.notify("EasyLua Test", "Test", "This is a test notification.")
+Easy.Lua.notify("EasyLua Test", "Test", "This is a test notification.")
 
 -- Get the current timestamp
-local timestamp = EasyLua.getTimestamp()
-EasyLua.assert(timestamp ~= nil, "Failed to get timestamp.")
+local timestamp = Easy.Lua.getTimestamp()
+Easy.Lua.assert(timestamp ~= nil, "Failed to get timestamp.")
 
 -- Get the system's timezone
-local timezone = EasyLua.getTimezone()
-EasyLua.assert(timezone ~= nil, "Failed to get timezone.")
+local timezone = Easy.Lua.getTimezone()
+Easy.Lua.assert(timezone ~= nil, "Failed to get timezone.")
 
 print("All system tests passed!")
 
@@ -296,12 +296,12 @@ print("All system tests passed!")
 printTestHeader("Advanced Tests")
 
 -- Generate a UUID
-local uuid = EasyLua.generateUUID()
-EasyLua.assert(#uuid == 36, "Failed to generate UUID.")
+local uuid = Easy.Lua.generateUUID()
+Easy.Lua.assert(#uuid == 36, "Failed to generate UUID.")
 
 -- Hash a string
-local hash = EasyLua.hashString("hello")
-EasyLua.assert(hash ~= nil, "Failed to hash string.")
+local hash = Easy.Lua.hashString("hello")
+Easy.Lua.assert(hash ~= nil, "Failed to hash string.")
 
 -- Try-catching in a custom way.
 
@@ -314,7 +314,7 @@ local function handleException(exception)
     print("Don't worry, this means that it passed :)")
 end
 
-EasyLua.try(riskyOperation, handleException) -- try-catch
+Easy.Lua.try(riskyOperation, handleException) -- try-catch
 
 print("All advanced tests passed!")
 
@@ -322,4 +322,43 @@ print("All advanced tests passed!")
 -- Final Message
 ---------------------
 
-print("\n=== All tests passed! ===")
+print("\n=== All normal tests passed! ===")
+
+---------------------
+-- OOP Tests
+---------------------
+
+printTestHeader("OOP Tests")
+
+local Person = Easy.OOP.class("Person")
+function Person:constructor(name, age)
+    self.name = name
+    self.age = age
+end
+
+function Person:greet()
+    if self.grade then
+        print("Hello, my name is " .. self.name .. " and I am " .. self.age .. " years old." .. " My grade is " .. self.grade)
+    else
+        print("Hello, my name is " .. self.name .. " and I am " .. self.age .. " years old.")
+    end
+end
+
+local Student = Easy.OOP.class("Student", Person)
+function Student:constructor(name, age, grade)
+    Person.constructor(self, name, age)
+    self.grade = grade
+end
+
+function Student:study()
+    print(self.name .. " is studying.")
+end
+
+local person = Person:new("John", 30)
+person:greet()
+
+local student = Student:new("Alex", 20, "A")
+student:greet()  -- Inherited from Person
+student:study()  -- Specific to Student
+
+print("=== DONE ===")

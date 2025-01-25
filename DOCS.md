@@ -33,7 +33,7 @@ local EasyLua = require("easy")
 
 ## I/O Utilities
 
-### `EasyLua.readFile(path)`
+### `Easy.Lua.readFile(path)`
 
 Reads the contents of a file.
 
@@ -43,12 +43,12 @@ Reads the contents of a file.
   - The file content as a string, or `nil` and an error message if the file cannot be read.
 
 ```lua
-local content = EasyLua.readFile("test.txt")
+local content = Easy.Lua.readFile("test.txt")
 ```
 
 ---
 
-### `EasyLua.writeFile(path, content)`
+### `Easy.Lua.writeFile(path, content)`
 
 Writes content to a file.
 
@@ -59,12 +59,12 @@ Writes content to a file.
   - `true` on success, or `nil` and an error message on failure.
 
 ```lua
-EasyLua.writeFile("test.txt", "Hello, EasyLua!")
+Easy.Lua.writeFile("test.txt", "Hello, EasyLua!")
 ```
 
 ---
 
-### `EasyLua.appendFile(path, content)`
+### `Easy.Lua.appendFile(path, content)`
 
 Appends content to a file.
 
@@ -75,12 +75,12 @@ Appends content to a file.
   - `true` on success, or `nil` and an error message on failure.
 
 ```lua
-EasyLua.appendFile("test.txt", "\nAppended text!")
+Easy.Lua.appendFile("test.txt", "\nAppended text!")
 ```
 
 ---
 
-### `EasyLua.fileExists(path)`
+### `Easy.Lua.fileExists(path)`
 
 Checks if a file exists.
 
@@ -90,14 +90,14 @@ Checks if a file exists.
   - `true` if the file exists, otherwise `false`.
 
 ```lua
-if EasyLua.fileExists("test.txt") then
+if Easy.Lua.fileExists("test.txt") then
     print("File exists!")
 end
 ```
 
 ---
 
-### `EasyLua.deleteFile(path)`
+### `Easy.Lua.deleteFile(path)`
 
 Deletes a file.
 
@@ -107,12 +107,12 @@ Deletes a file.
   - `true` on success, or `nil` and an error message on failure.
 
 ```lua
-EasyLua.deleteFile("test.txt")
+Easy.Lua.deleteFile("test.txt")
 ```
 
 ---
 
-### `EasyLua.renameFile(oldPath, newPath)`
+### `Easy.Lua.renameFile(oldPath, newPath)`
 
 Renames a file.
 
@@ -123,14 +123,14 @@ Renames a file.
   - `true` on success, or `nil` and an error message on failure.
 
 ```lua
-EasyLua.renameFile("test.txt", "test_renamed.txt")
+Easy.Lua.renameFile("test.txt", "test_renamed.txt")
 ```
 
 ---
 
 ## JSON Utilities
 
-### `EasyLua.toJSON(tbl, pretty)`
+### `Easy.Lua.toJSON(tbl, pretty)`
 
 Encodes a Lua table to a JSON string.
 
@@ -141,12 +141,12 @@ Encodes a Lua table to a JSON string.
   - The JSON string.
 
 ```lua
-local json = EasyLua.toJSON({ name = "Lua", version = "5.4" }, true)
+local json = Easy.Lua.toJSON({ name = "Lua", version = "5.4" }, true)
 ```
 
 ---
 
-### `EasyLua.fromJSON(jsonStr)`
+### `Easy.Lua.fromJSON(jsonStr)`
 
 Decodes a JSON string to a Lua table.
 
@@ -156,14 +156,14 @@ Decodes a JSON string to a Lua table.
   - The decoded table, or `nil` and an error message on failure.
 
 ```lua
-local tbl = EasyLua.fromJSON('{"name":"Lua","version":"5.4"}')
+local tbl = Easy.Lua.fromJSON('{"name":"Lua","version":"5.4"}')
 ```
 
 ---
 
 ## Integer Utilities
 
-### `EasyLua.isInteger(num)`
+### `Easy.Lua.isInteger(num)`
 
 Checks if a number is an integer.
 
@@ -173,12 +173,12 @@ Checks if a number is an integer.
   - `true` if the number is an integer, otherwise `false`.
 
 ```lua
-print(EasyLua.isInteger(42)) -- true
+print(Easy.Lua.isInteger(42)) -- true
 ```
 
 ---
 
-### `EasyLua.randomInt(min, max)`
+### `Easy.Lua.randomInt(min, max)`
 
 Generates a random integer between `min` and `max`.
 
@@ -189,12 +189,12 @@ Generates a random integer between `min` and `max`.
   - A random integer.
 
 ```lua
-print(EasyLua.randomInt(1, 100))
+print(Easy.Lua.randomInt(1, 100))
 ```
 
 ---
 
-### `EasyLua.toInt(str, base)`
+### `Easy.Lua.toInt(str, base)`
 
 Converts a string to an integer.
 
@@ -205,12 +205,12 @@ Converts a string to an integer.
   - The converted integer, or `nil` if the conversion fails.
 
 ```lua
-print(EasyLua.toInt("42")) -- 42
+print(Easy.Lua.toInt("42")) -- 42
 ```
 
 ---
 
-### `EasyLua.isEven(num)`
+### `Easy.Lua.isEven(num)`
 
 Checks if a number is even.
 
@@ -220,12 +220,12 @@ Checks if a number is even.
   - `true` if the number is even, otherwise `false`.
 
 ```lua
-print(EasyLua.isEven(4)) -- true
+print(Easy.Lua.isEven(4)) -- true
 ```
 
 ---
 
-### `EasyLua.isOdd(num)`
+### `Easy.Lua.isOdd(num)`
 
 Checks if a number is odd.
 
@@ -235,12 +235,12 @@ Checks if a number is odd.
   - `true` if the number is odd, otherwise `false`.
 
 ```lua
-print(EasyLua.isOdd(5)) -- true
+print(Easy.Lua.isOdd(5)) -- true
 ```
 
 ---
 
-### `EasyLua.abs(num)`
+### `Easy.Lua.abs(num)`
 
 Returns the absolute value of a number.
 
@@ -250,12 +250,12 @@ Returns the absolute value of a number.
   - The absolute value.
 
 ```lua
-print(EasyLua.abs(-10)) -- 10
+print(Easy.Lua.abs(-10)) -- 10
 ```
 
 ---
 
-### `EasyLua.factorial(num)`
+### `Easy.Lua.factorial(num)`
 
 Calculates the factorial of a number.
 
@@ -265,14 +265,14 @@ Calculates the factorial of a number.
   - The factorial, or `nil` if the number is negative.
 
 ```lua
-print(EasyLua.factorial(5)) -- 120
+print(Easy.Lua.factorial(5)) -- 120
 ```
 
 ---
 
 ## String Utilities
 
-### `EasyLua.trim(str)`
+### `Easy.Lua.trim(str)`
 
 Trims whitespace from the beginning and end of a string.
 
@@ -282,12 +282,12 @@ Trims whitespace from the beginning and end of a string.
   - The trimmed string.
 
 ```lua
-print(EasyLua.trim("  hello  ")) -- "hello"
+print(Easy.Lua.trim("  hello  ")) -- "hello"
 ```
 
 ---
 
-### `EasyLua.split(str, delimiter)`
+### `Easy.Lua.split(str, delimiter)`
 
 Splits a string by a delimiter.
 
@@ -298,12 +298,12 @@ Splits a string by a delimiter.
   - A table of substrings.
 
 ```lua
-local parts = EasyLua.split("one,two,three", ",")
+local parts = Easy.Lua.split("one,two,three", ",")
 ```
 
 ---
 
-### `EasyLua.startsWith(str, prefix)`
+### `Easy.Lua.startsWith(str, prefix)`
 
 Checks if a string starts with a prefix.
 
@@ -314,12 +314,12 @@ Checks if a string starts with a prefix.
   - `true` if the string starts with the prefix, otherwise `false`.
 
 ```lua
-print(EasyLua.startsWith("hello world", "hello")) -- true
+print(Easy.Lua.startsWith("hello world", "hello")) -- true
 ```
 
 ---
 
-### `EasyLua.endsWith(str, suffix)`
+### `Easy.Lua.endsWith(str, suffix)`
 
 Checks if a string ends with a suffix.
 
@@ -330,12 +330,12 @@ Checks if a string ends with a suffix.
   - `true` if the string ends with the suffix, otherwise `false`.
 
 ```lua
-print(EasyLua.endsWith("hello world", "world")) -- true
+print(Easy.Lua.endsWith("hello world", "world")) -- true
 ```
 
 ---
 
-### `EasyLua.toUpper(str)`
+### `Easy.Lua.toUpper(str)`
 
 Converts a string to uppercase.
 
@@ -345,12 +345,12 @@ Converts a string to uppercase.
   - The uppercase string.
 
 ```lua
-print(EasyLua.toUpper("hello")) -- "HELLO"
+print(Easy.Lua.toUpper("hello")) -- "HELLO"
 ```
 
 ---
 
-### `EasyLua.toLower(str)`
+### `Easy.Lua.toLower(str)`
 
 Converts a string to lowercase.
 
@@ -360,12 +360,12 @@ Converts a string to lowercase.
   - The lowercase string.
 
 ```lua
-print(EasyLua.toLower("HELLO")) -- "hello"
+print(Easy.Lua.toLower("HELLO")) -- "hello"
 ```
 
 ---
 
-### `EasyLua.capitalize(str)`
+### `Easy.Lua.capitalize(str)`
 
 Capitalizes the first letter of a string.
 
@@ -375,12 +375,12 @@ Capitalizes the first letter of a string.
   - The capitalized string.
 
 ```lua
-print(EasyLua.capitalize("easy")) -- "Easy"
+print(Easy.Lua.capitalize("easy")) -- "Easy"
 ```
 
 ---
 
-### `EasyLua.reverse(str)`
+### `Easy.Lua.reverse(str)`
 
 Reverses a string.
 
@@ -390,12 +390,12 @@ Reverses a string.
   - The reversed string.
 
 ```lua
-print(EasyLua.reverse("hello")) -- "olleh"
+print(Easy.Lua.reverse("hello")) -- "olleh"
 ```
 
 ---
 
-### `EasyLua.countSubstring(str, substring)`
+### `Easy.Lua.countSubstring(str, substring)`
 
 Counts occurrences of a substring in a string.
 
@@ -406,12 +406,12 @@ Counts occurrences of a substring in a string.
   - The number of occurrences.
 
 ```lua
-print(EasyLua.countSubstring("hello hello", "hello")) -- 2
+print(Easy.Lua.countSubstring("hello hello", "hello")) -- 2
 ```
 
 ---
 
-### `EasyLua.replace(str, old, new)`
+### `Easy.Lua.replace(str, old, new)`
 
 Replaces all occurrences of a substring in a string.
 
@@ -423,12 +423,12 @@ Replaces all occurrences of a substring in a string.
   - The modified string.
 
 ```lua
-print(EasyLua.replace("hello world", "world", "Lua")) -- "hello Lua"
+print(Easy.Lua.replace("hello world", "world", "Lua")) -- "hello Lua"
 ```
 
 ---
 
-### `EasyLua.isBlank(str)`
+### `Easy.Lua.isBlank(str)`
 
 Checks if a string is empty or consists only of whitespace.
 
@@ -438,12 +438,12 @@ Checks if a string is empty or consists only of whitespace.
   - `true` if the string is blank, otherwise `false`.
 
 ```lua
-print(EasyLua.isBlank("   ")) -- true
+print(Easy.Lua.isBlank("   ")) -- true
 ```
 
 ---
 
-### `EasyLua.randomString(length)`
+### `Easy.Lua.randomString(length)`
 
 Generates a random string of a given length.
 
@@ -453,14 +453,14 @@ Generates a random string of a given length.
   - The random string.
 
 ```lua
-print(EasyLua.randomString(10)) -- e.g., "aB3dEfG7hI"
+print(Easy.Lua.randomString(10)) -- e.g., "aB3dEfG7hI"
 ```
 
 ---
 
 ## Table Utilities
 
-### `EasyLua.deepCopy(tbl)`
+### `Easy.Lua.deepCopy(tbl)`
 
 Creates a deep copy of a table.
 
@@ -470,12 +470,12 @@ Creates a deep copy of a table.
   - The copied table.
 
 ```lua
-local copy = EasyLua.deepCopy(original)
+local copy = Easy.Lua.deepCopy(original)
 ```
 
 ---
 
-### `EasyLua.mergeTables(t1, t2)`
+### `Easy.Lua.mergeTables(t1, t2)`
 
 Merges two tables (deep merge).
 
@@ -486,12 +486,12 @@ Merges two tables (deep merge).
   - The merged table.
 
 ```lua
-local merged = EasyLua.mergeTables({ a = 1 }, { b = 2 })
+local merged = Easy.Lua.mergeTables({ a = 1 }, { b = 2 })
 ```
 
 ---
 
-### `EasyLua.sortTable(tbl, comparator)`
+### `Easy.Lua.sortTable(tbl, comparator)`
 
 Sorts a table by values.
 
@@ -502,12 +502,12 @@ Sorts a table by values.
   - The sorted table.
 
 ```lua
-local sorted = EasyLua.sortTable({ 3, 1, 2 }, function(a, b) return a < b end)
+local sorted = Easy.Lua.sortTable({ 3, 1, 2 }, function(a, b) return a < b end)
 ```
 
 ---
 
-### `EasyLua.tableContains(tbl, value)`
+### `Easy.Lua.tableContains(tbl, value)`
 
 Checks if a table contains a value.
 
@@ -518,12 +518,12 @@ Checks if a table contains a value.
   - `true` if the value is found, otherwise `false`.
 
 ```lua
-print(EasyLua.tableContains({ 1, 2, 3 }, 2)) -- true
+print(Easy.Lua.tableContains({ 1, 2, 3 }, 2)) -- true
 ```
 
 ---
 
-### `EasyLua.tableSize(tbl)`
+### `Easy.Lua.tableSize(tbl)`
 
 Returns the size of a table.
 
@@ -533,12 +533,12 @@ Returns the size of a table.
   - The number of elements in the table.
 
 ```lua
-print(EasyLua.tableSize({ a = 1, b = 2 })) -- 2
+print(Easy.Lua.tableSize({ a = 1, b = 2 })) -- 2
 ```
 
 ---
 
-### `EasyLua.flattenTable(tbl)`
+### `Easy.Lua.flattenTable(tbl)`
 
 Flattens a nested table into a single-level table.
 
@@ -548,14 +548,14 @@ Flattens a nested table into a single-level table.
   - The flattened table.
 
 ```lua
-local flat = EasyLua.flattenTable({ 1, { 2, { 3, 4 } } })
+local flat = Easy.Lua.flattenTable({ 1, { 2, { 3, 4 } } })
 ```
 
 ---
 
 ## Math Utilities
 
-### `EasyLua.clamp(num, min, max)`
+### `Easy.Lua.clamp(num, min, max)`
 
 Clamps a number between `min` and `max`.
 
@@ -567,12 +567,12 @@ Clamps a number between `min` and `max`.
   - The clamped value.
 
 ```lua
-print(EasyLua.clamp(10, 1, 5)) -- 5
+print(Easy.Lua.clamp(10, 1, 5)) -- 5
 ```
 
 ---
 
-### `EasyLua.round(num)`
+### `Easy.Lua.round(num)`
 
 Rounds a number to the nearest integer.
 
@@ -582,12 +582,12 @@ Rounds a number to the nearest integer.
   - The rounded value.
 
 ```lua
-print(EasyLua.round(3.6)) -- 4
+print(Easy.Lua.round(3.6)) -- 4
 ```
 
 ---
 
-### `EasyLua.isPrime(num)`
+### `Easy.Lua.isPrime(num)`
 
 Checks if a number is prime.
 
@@ -597,12 +597,12 @@ Checks if a number is prime.
   - `true` if the number is prime, otherwise `false`.
 
 ```lua
-print(EasyLua.isPrime(29)) -- true
+print(Easy.Lua.isPrime(29)) -- true
 ```
 
 ---
 
-### `EasyLua.sum(tbl)`
+### `Easy.Lua.sum(tbl)`
 
 Calculates the sum of a table of numbers.
 
@@ -612,12 +612,12 @@ Calculates the sum of a table of numbers.
   - The sum.
 
 ```lua
-print(EasyLua.sum({ 1, 2, 3, 4, 5 })) -- 15
+print(Easy.Lua.sum({ 1, 2, 3, 4, 5 })) -- 15
 ```
 
 ---
 
-### `EasyLua.average(tbl)`
+### `Easy.Lua.average(tbl)`
 
 Calculates the average of a table of numbers.
 
@@ -627,12 +627,12 @@ Calculates the average of a table of numbers.
   - The average.
 
 ```lua
-print(EasyLua.average({ 1, 2, 3, 4, 5 })) -- 3
+print(Easy.Lua.average({ 1, 2, 3, 4, 5 })) -- 3
 ```
 
 ---
 
-### `EasyLua.gcd(a, b)`
+### `Easy.Lua.gcd(a, b)`
 
 Calculates the greatest common divisor (GCD) of two numbers.
 
@@ -643,12 +643,12 @@ Calculates the greatest common divisor (GCD) of two numbers.
   - The GCD.
 
 ```lua
-print(EasyLua.gcd(12, 18)) -- 6
+print(Easy.Lua.gcd(12, 18)) -- 6
 ```
 
 ---
 
-### `EasyLua.lcm(a, b)`
+### `Easy.Lua.lcm(a, b)`
 
 Calculates the least common multiple (LCM) of two numbers.
 
@@ -659,14 +659,14 @@ Calculates the least common multiple (LCM) of two numbers.
   - The LCM.
 
 ```lua
-print(EasyLua.lcm(12, 18)) -- 36
+print(Easy.Lua.lcm(12, 18)) -- 36
 ```
 
 ---
 
 ## Date/Time Utilities
 
-### `EasyLua.currentDateTime()`
+### `Easy.Lua.currentDateTime()`
 
 Returns the current date and time as a string.
 
@@ -674,12 +674,12 @@ Returns the current date and time as a string.
   - The date and time in `YYYY-MM-DD HH:MM:SS` format.
 
 ```lua
-print(EasyLua.currentDateTime()) -- e.g., "2023-10-05 14:30:00"
+print(Easy.Lua.currentDateTime()) -- e.g., "2023-10-05 14:30:00"
 ```
 
 ---
 
-### `EasyLua.formatTimestamp(timestamp, format)`
+### `Easy.Lua.formatTimestamp(timestamp, format)`
 
 Formats a timestamp into a custom string.
 
@@ -690,14 +690,14 @@ Formats a timestamp into a custom string.
   - The formatted string.
 
 ```lua
-print(EasyLua.formatTimestamp(os.time(), "%Y-%m-%d")) -- e.g., "2023-10-05"
+print(Easy.Lua.formatTimestamp(os.time(), "%Y-%m-%d")) -- e.g., "2023-10-05"
 ```
 
 ---
 
 ## File System Utilities
 
-### `EasyLua.listFiles(dir)`
+### `Easy.Lua.listFiles(dir)`
 
 Lists files in a directory.
 
@@ -707,12 +707,12 @@ Lists files in a directory.
   - A table of file names.
 
 ```lua
-local files = EasyLua.listFiles(".")
+local files = Easy.Lua.listFiles(".")
 ```
 
 ---
 
-### `EasyLua.createDir(path)`
+### `Easy.Lua.createDir(path)`
 
 Creates a directory.
 
@@ -722,12 +722,12 @@ Creates a directory.
   - `true` on success, otherwise `false`.
 
 ```lua
-EasyLua.createDir("test_dir")
+Easy.Lua.createDir("test_dir")
 ```
 
 ---
 
-### `EasyLua.deleteDir(path)`
+### `Easy.Lua.deleteDir(path)`
 
 Deletes a directory.
 
@@ -737,14 +737,14 @@ Deletes a directory.
   - `true` on success, otherwise `false`.
 
 ```lua
-EasyLua.deleteDir("test_dir")
+Easy.Lua.deleteDir("test_dir")
 ```
 
 ---
 
 ## System Utilities
 
-### `EasyLua.execute(command)`
+### `Easy.Lua.execute(command)`
 
 Executes a shell command and returns the output.
 
@@ -754,12 +754,12 @@ Executes a shell command and returns the output.
   - The command output as a string.
 
 ```lua
-print(EasyLua.execute("echo Hello")) -- "Hello"
+print(Easy.Lua.execute("echo Hello")) -- "Hello"
 ```
 
 ---
 
-### `EasyLua.getCurrentDir()`
+### `Easy.Lua.getCurrentDir()`
 
 Returns the current working directory.
 
@@ -767,12 +767,12 @@ Returns the current working directory.
   - The current directory path.
 
 ```lua
-print(EasyLua.getCurrentDir()) -- e.g., "/home/user"
+print(Easy.Lua.getCurrentDir()) -- e.g., "/home/user"
 ```
 
 ---
 
-### `EasyLua.getOS()`
+### `Easy.Lua.getOS()`
 
 Returns the operating system name.
 
@@ -780,12 +780,12 @@ Returns the operating system name.
   - `"Windows"` or `"Unix-like"`.
 
 ```lua
-print(EasyLua.getOS()) -- e.g., "Unix-like"
+print(Easy.Lua.getOS()) -- e.g., "Unix-like"
 ```
 
 ---
 
-### `EasyLua.getEnv(var)`
+### `Easy.Lua.getEnv(var)`
 
 Returns the operating system name.
 
@@ -796,12 +796,12 @@ Returns the operating system name.
   - The value of the enviroment variable.
 
 ```lua
-print(EasyLua.getEnv("USER")) -- e.g., "neo"
+print(Easy.Lua.getEnv("USER")) -- e.g., "neo"
 ```
 
 ---
 
-### `EasyLua.setEnv(var, value)`
+### `Easy.Lua.setEnv(var, value)`
 
 Sets the value of an enviroment variable.
 
@@ -811,7 +811,7 @@ Sets the value of an enviroment variable.
 
 ---
 
-### `EasyLua.isProcessRunning(process)`
+### `Easy.Lua.isProcessRunning(process)`
 
 Check if a process is running.
 
@@ -823,7 +823,7 @@ Check if a process is running.
 
 ---
 
-### `EasyLua.killProcess(process)`
+### `Easy.Lua.killProcess(process)`
 
 Check if a process is running.
 
@@ -832,7 +832,7 @@ Check if a process is running.
 
 ---
 
-### `EasyLua.getUsername()`
+### `Easy.Lua.getUsername()`
 
 Get the current user's username.
 
@@ -841,7 +841,7 @@ Get the current user's username.
 
 ---
 
-### `EasyLua.getHostname()`
+### `Easy.Lua.getHostname()`
 
 Get the current machine hostname.
 
@@ -850,7 +850,7 @@ Get the current machine hostname.
 
 ---
 
-### `EasyLua.getUptime()`
+### `Easy.Lua.getUptime()`
 
 Get the uptime of the current machine.
 
@@ -859,7 +859,7 @@ Get the uptime of the current machine.
 
 ---
 
-### `EasyLua.getLocalIP()`
+### `Easy.Lua.getLocalIP()`
 
 Get the local IP address of the system.
 
@@ -868,7 +868,7 @@ Get the local IP address of the system.
 
 ---
 
-### `EasyLua.checkInternet()`
+### `Easy.Lua.checkInternet()`
 
 Check if a true internet connection is available.
 
@@ -877,7 +877,7 @@ Check if a true internet connection is available.
 
 ---
 
-### `EasyLua.notify(name, title, message)`
+### `Easy.Lua.notify(name, title, message)`
 
 Sends a desktop notification on Unix-Like and Windows systems.
 
@@ -888,7 +888,7 @@ Sends a desktop notification on Unix-Like and Windows systems.
 
 ---
 
-### `EasyLua.getTimestamp()`
+### `Easy.Lua.getTimestamp()`
 
 Get the system current timestamp.
 
@@ -897,7 +897,7 @@ Get the system current timestamp.
 
 ---
 
-### `EasyLua.getTimezone()`
+### `Easy.Lua.getTimezone()`
 
 Get the timezone of the system.
 
@@ -906,19 +906,19 @@ Get the timezone of the system.
 
 ---
 
-### `EasyLua.shutdown()`
+### `Easy.Lua.shutdown()`
 
 Shutdown the system.
 
 ---
 
-### `EasyLua.restart()`
+### `Easy.Lua.restart()`
 
 Reboot the system.
 
 ---
 
-### `EasyLua.getCPUUsage()` (BASIC)
+### `Easy.Lua.getCPUUsage()` (BASIC)
 
 Get the CPU Usage of the system (in percentage, without the percent symbol)
 
@@ -927,7 +927,7 @@ Get the CPU Usage of the system (in percentage, without the percent symbol)
 
 ---
 
-### `EasyLua.getMemoryUsage()` (BASIC)
+### `Easy.Lua.getMemoryUsage()` (BASIC)
 
 Get the Memory Usage of the system (in percentage, without the percent symbol)
 
@@ -938,7 +938,7 @@ Get the Memory Usage of the system (in percentage, without the percent symbol)
 
 ## Advanced Utilities
 
-### `EasyLua.generateUUID()`
+### `Easy.Lua.generateUUID()`
 
 Generates a UUID (v4).
 
@@ -946,12 +946,12 @@ Generates a UUID (v4).
   - A UUID string.
 
 ```lua
-print(EasyLua.generateUUID()) -- e.g., "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+print(Easy.Lua.generateUUID()) -- e.g., "f47ac10b-58cc-4372-a567-0e02b2c3d479"
 ```
 
 ---
 
-### `EasyLua.hashString(str)`
+### `Easy.Lua.hashString(str)`
 
 Hashes a string using a simple algorithm.
 
@@ -961,12 +961,12 @@ Hashes a string using a simple algorithm.
   - The hash value.
 
 ```lua
-print(EasyLua.hashString("hello")) -- e.g., 99162322
+print(Easy.Lua.hashString("hello")) -- e.g., 99162322
 ```
 
 ---
 
-### `EasyLua.assert(condition, message)`
+### `Easy.Lua.assert(condition, message)`
 
 Assert a condition is true, otherwise raise an error.
 
@@ -976,7 +976,7 @@ Assert a condition is true, otherwise raise an error.
 - **Raises**:
   - An error if the condition is false.
 
-### `EasyLua.try(f, catch_f)`
+### `Easy.Lua.try(f, catch_f)`
 
 Try-catching in a new syntax!
 
@@ -989,8 +989,8 @@ Try-catching in a new syntax!
 ### Example 1: Reading and Writing Files
 
 ```lua
-EasyLua.writeFile("test.txt", "Hello, EasyLua!")
-local content = EasyLua.readFile("test.txt")
+Easy.Lua.writeFile("test.txt", "Hello, EasyLua!")
+local content = Easy.Lua.readFile("test.txt")
 print(content) -- "Hello, EasyLua!"
 ```
 
@@ -998,10 +998,10 @@ print(content) -- "Hello, EasyLua!"
 
 ```lua
 local data = { name = "Lua", version = "5.4" }
-local json = EasyLua.toJSON(data, true)
+local json = Easy.Lua.toJSON(data, true)
 print(json) -- Pretty-printed JSON
 
-local decoded = EasyLua.fromJSON(json)
+local decoded = Easy.Lua.fromJSON(json)
 print(decoded.name) -- "Lua"
 ```
 
@@ -1009,6 +1009,132 @@ print(decoded.name) -- "Lua"
 
 ```lua
 local str = "  hello world  "
-print(EasyLua.trim(str)) -- "hello world"
-print(EasyLua.reverse(str)) -- "dlrow olleh"
+print(Easy.Lua.trim(str)) -- "hello world"
+print(Easy.Lua.reverse(str)) -- "dlrow olleh"
 ```
+
+---
+
+## `EasyOOP`
+
+This module simplifies the OOP usage in Lua. Integrated into EasyLua.
+
+### Functions
+
+#### `class(name, base)`
+
+Creates a new class with the specified `name`. Optionally, you can specify a `base` class to inherit from. This function returns a new class table.
+
+**Arguments:**
+
+- `name` (string): The name of the class (e.g., `"Person"`).
+- `base` (table, optional): The parent class from which the new class will inherit.
+
+**Returns:**
+
+- A new class table with a `new()` method for creating instances and a `constructor()` method for custom initialization (optional).
+
+**Example Usage:**
+
+```lua
+-- Define a base class 'Person'
+local Person = Easy.OOP.class("Person")
+function Person:constructor(name, age)
+    self.name = name
+    self.age = age
+end
+
+function Person:greet()
+    print("Hello, my name is " .. self.name .. " and I am " .. self.age .. " years old.")
+end
+```
+
+#### `extends(child_class, parent_class)`
+
+Sets up inheritance, allowing the `child_class` to inherit from `parent_class`.
+
+**Arguments:**
+
+- `child_class` (table): The class that will inherit from the parent.
+- `parent_class` (table): The class from which `child_class` will inherit.
+
+**Returns:**
+
+- This function modifies the `child_class` to inherit from `parent_class`. It does not return a value.
+
+**Example Usage:**
+
+```lua
+-- Define a subclass 'Student' that extends 'Person'
+local Student = Easy.OOP.class("Student", Person)
+function Student:constructor(name, age, grade)
+    Person.constructor(self, name, age)  -- Call the parent class's constructor
+    self.grade = grade
+end
+
+function Student:study()
+    print(self.name .. " is studying.")
+end
+```
+
+### Class Structure
+
+Each class created with the `class` function has:
+
+1. **A constructor (`constructor`)**: Initializes instance properties (optional, can be customized in each class).
+2. **Methods**: Functions that are defined in the class and can be called on instances (e.g., `greet()` in the `Person` class).
+
+### Instance Creation
+
+To create an instance of a class, use the `new()` method defined on each class:
+
+```lua
+local person = Person:new("John", 30)
+person:greet()
+
+local student = Student:new("Alice", 20, "A")
+student:greet()  -- Inherited from Person
+student:study()  -- Specific to Student
+```
+
+### Example: Full Usage
+
+```lua
+local Easy = require("easy")
+
+-- Define a base class 'Person'
+local Person = Easy.OOP.class("Person")
+function Person:constructor(name, age)
+    self.name = name
+    self.age = age
+end
+
+function Person:greet()
+    print("Hello, my name is " .. self.name .. " and I am " .. self.age .. " years old.")
+end
+
+-- Define a subclass 'Student' that extends 'Person'
+local Student = Easy.OOP.class("Student", Person)
+function Student:constructor(name, age, grade)
+    Person.constructor(self, name, age)  -- Call the parent class's constructor
+    self.grade = grade
+end
+
+function Student:study()
+    print(self.name .. " is studying.")
+end
+
+-- Create instances
+local person = Person:new("John", 30)
+person:greet()
+
+local student = Student:new("Alice", 20, "A")
+student:greet()  -- Inherited from Person
+student:study()  -- Specific to Student
+```
+
+### Notes
+
+- **`constructor`**: The constructor is a method you can define in your classes to initialize instance properties. It is optional and can be customized for each class.
+- **Inheritance**: Classes that inherit from other classes automatically have access to the methods and properties of the parent class. Use `OOP.extends(child_class, parent_class)` to enable inheritance.
+- **Instance Creation**: The `new()` function creates instances of classes and can be used with `OOP.class`-created classes. Instances can then access methods defined in their class.

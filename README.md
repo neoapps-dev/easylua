@@ -10,7 +10,7 @@ To install EasyLua, follow these steps:
 2. Clone the repository:
 
     ```sh
-    git clone https://github.com/neoapps-dev/easylua.git
+    git clone https://github.com/neoapps-dev/Easy.Lua.git
     ```
 
 3. Navigate to the project directory:
