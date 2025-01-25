@@ -269,7 +269,7 @@ local uptime = Easy.Lua.getUptime()
 Easy.Lua.assert(uptime ~= nil, "Failed to get uptime.")
 
 -- Get the local IP address
-local ip = Easy.Lua.getLocalIP()
+local ip = Easy.Lua.getLocalIP(false) -- get wlan0 ip
 Easy.Lua.assert(ip ~= nil, "Failed to get local IP address.")
 
 -- Check internet connectivity
