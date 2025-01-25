@@ -399,7 +399,12 @@ print("Age: " .. age)
 
 db:delete("name")
 
-print("Name: " .. db:get("name"))
+Easy.Lua.try(function()
+    print("Name: " .. db:get("name"))
+end, function(exception)
+    print("Caught an exception: " .. exception)
+    print("Don't worry, this means that it passed :)")
+end)
 
 print("\n=== All DB tests done! ===\n")
 
