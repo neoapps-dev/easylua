@@ -44,3 +44,12 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 For any questions or feedback, please contact us at [asd22.info@gmail.com](mailto:asd22.info@gmail.com).
+
+## Credits
+
+Special thanks for these people to make EasyLua possible:
+
+- [The Lua Team](https://github.com/lua) for creating Lua.
+- [David Kolf](http://dkolf.de/) for his Lua module `dkjson`
+- [Den Delimarsky](https://github.com/dend) for his [gist](https://gist.github.com/dend/5ae8a70678e3a35d02ecd39c12f99110) about sending desktop notifications via powershell.
+- [Me](https://github.com/neoapps-dev) for creating EasyLua and BuildIt.
