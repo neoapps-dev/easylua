@@ -480,7 +480,10 @@ end
 -- Show a desktop notification
 function EasyLua.notify(title, message)
     if EasyLua.getOS() == "Windows" then
-        os.execute(string.format('powershell -command "& {[System.Reflection.Assembly]::LoadWithPartialName(\'System.Windows.Forms\'); [System.Windows.Forms.MessageBox]::Show(\'%s\', \'%s\');}"', message, title))
+        os.execute(string.format(
+            [[powershell -Command "function Show-Notification { param([string]$ToastTitle, [string][parameter(ValueFromPipeline)]$ToastText); [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null; $Template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02); $RawXml = [xml]$Template.GetXml(); ($RawXml.toast.visual.binding.text | where {$_.id -eq '1'}).AppendChild($RawXml.CreateTextNode($ToastTitle)) > $null; ($RawXml.toast.visual.binding.text | where {$_.id -eq '2'}).AppendChild($RawXml.CreateTextNode($ToastText)) > $null; $SerializedXml = New-Object Windows.Data.Xml.Dom.XmlDocument; $SerializedXml.LoadXml($RawXml.OuterXml); $Toast = [Windows.UI.Notifications.ToastNotification]::new($SerializedXml); $Toast.Tag = 'EasyLua'; $Toast.Group = 'EasyLua'; $Toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(1); $Notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('EasyLua'); $Notifier.Show($Toast); } Show-Notification -ToastTitle '%s' -ToastText '%s'"]],
+            title, message
+        ))
     else
         os.execute(string.format('notify-send "%s" "%s"', title, message))
     end
@@ -577,5 +580,13 @@ function EasyLua.assert(condition, message)
         error("[ERROR] " .. message)
     end
 end
+
+function EasyLua.try(f, catch_f)
+    local status, exception = pcall(f)
+    if not status then
+        catch_f(exception)
+    end
+end
+    
 
 return EasyLua

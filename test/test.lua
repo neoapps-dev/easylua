@@ -277,8 +277,6 @@ local internet = EasyLua.checkInternet()
 EasyLua.assert(internet == true or internet == false, "Failed to check internet connectivity.")
 
 -- Send a desktop notification
--- On GNU/Linux, this will show a notification.
--- On Windows, this will show a message box.
 EasyLua.notify("Test", "This is a test notification.")
 
 -- Get the current timestamp
@@ -304,6 +302,19 @@ EasyLua.assert(#uuid == 36, "Failed to generate UUID.")
 -- Hash a string
 local hash = EasyLua.hashString("hello")
 EasyLua.assert(hash ~= nil, "Failed to hash string.")
+
+-- Try-catching in a custom way.
+
+local function riskyOperation()
+    error("Something went wrong!") -- This will trigger the error
+end
+
+local function handleException(exception)
+    print("Caught an exception: " .. exception)
+    print("Don't worry, this means that it passed :)")
+end
+
+EasyLua.try(riskyOperation, handleException) -- try-catch
 
 print("All advanced tests passed!")
 

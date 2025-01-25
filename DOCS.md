@@ -975,6 +975,14 @@ Assert a condition is true, otherwise raise an error.
 - **Raises**:
   - An error if the condition is false.
 
+### `EasyLua.try(f, catch_f)`
+
+Try-catching in a new syntax!
+
+- **Parameters**:
+  - `f` (function): Function to try
+  - `catch_f` (function(exception)): Catching function (with the exception)
+
 ## Examples
 
 ### Example 1: Reading and Writing Files
