@@ -6,50 +6,127 @@
   [![Codeac](https://static.codeac.io/badges/2-903404923.svg "Codeac")](https://app.codeac.io/github/neoapps-dev/easylua) [![License](https://img.shields.io/github/license/neoapps-dev/easylua.svg?style=flat-square)](https://github.com/neoapps-dev/buildit/blob/master/LICENSE)
 </div>
 
-## Installation
+# EasyLua
 
-To install EasyLua, follow these steps:
+**EasyLua** is a lightweight Lua utility library designed to simplify everyday programming tasks. It aims to eliminate the repetitive work of implementing common utility functions and provides developers with a collection of reusable, cross-platform tools. Whether you're working on a game, web app, or general scripting task, EasyLua can make your Lua development faster and more efficient.
 
-1. Install [BuildIt](https://github.com/neoapps-dev/buildit.git)
-2. Clone the repository:
+---
 
-    ```sh
-    git clone https://github.com/neoapps-dev/Easy.Lua.git
-    ```
+## 📌 **Why EasyLua?**
 
-3. Navigate to the project directory:
+Lua is a powerful and lightweight scripting language, but it lacks many built-in utility functions that developers often need. EasyLua fills this gap by offering a suite of features for:
 
-    ```sh
-    cd easylua
-    ```
+- File Handling
+- JSON Operations
+- String Manipulations
+- Table Management
+- Mathematical Computations
+- Date/Time Utilities
 
-4. Pack it as a single file:
+With EasyLua, you can save time and focus on building your application instead of writing utility functions from scratch.
 
-    ```sh
-    buildit pack
-    ```
+---
 
-## Usage
+## 🚀 **Core Features**
 
-Check out the [DOCS.md](DOCS.md) file for every function.
+### 🔹 **File Utilities**
 
-## Contributing
+Simplify file operations with intuitive functions:
 
-We welcome contributions and feedback! If you have a feature request or bug report, please open an issue on the GitHub repository
+- **Read, write, and append** to files.
+- **Rename and delete** files safely.
+- **Check if files exist** or create directories.
 
-## License
+### 🔹 **JSON Utilities**
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Handle JSON data effortlessly:
 
-## Contact
+- Encode tables to JSON strings.
+- Decode JSON strings into Lua tables.
+- Pretty-print JSON for debugging.
 
-For any questions or feedback, please contact us at [asd22.info@gmail.com](mailto:asd22.info@gmail.com).
+### 🔹 **Number Utilities**
 
-## Credits
+Perform common number-related tasks:
 
-Special thanks for these people to make EasyLua possible:
+- Generate random integers.
+- Check if a number is even or odd.
+- Calculate factorials or Fibonacci numbers.
 
-- [The Lua Team](https://github.com/lua) for creating Lua.
-- [David Kolf](http://dkolf.de/) for his Lua module `dkjson`
-- [Den Delimarsky](https://github.com/dend) for his [gist](https://gist.github.com/dend/5ae8a70678e3a35d02ecd39c12f99110) about sending desktop notifications via powershell.
-- [Me](https://github.com/neoapps-dev) for creating EasyLua and BuildIt.
+### 🔹 **String Utilities**
+
+Work smarter with strings:
+
+- Trim whitespace.
+- Split strings into tables by a delimiter.
+- Convert to upper or lower case.
+- Replace substrings easily.
+
+### 🔹 **Table Utilities**
+
+Take control of Lua tables:
+
+- Deep copy or merge tables.
+- Flatten nested tables.
+- Sort tables by keys or values.
+- Search for specific values.
+
+### 🔹 **Math Utilities**
+
+Boost your math operations:
+
+- Clamp numbers within a range.
+- Calculate the Greatest Common Divisor (GCD) or Least Common Multiple (LCM).
+- Check if a number is prime.
+
+### 🔹 **Date/Time Utilities**
+
+Handle time-related operations effortlessly:
+
+- Convert timestamps to human-readable formats.
+- Get the current date and time in custom formats.
+
+---
+
+## 🛠️ **Getting Started**
+
+### Installation
+
+Download the `easylua.lua` file from this repository and place it in your Lua project directory.
+
+### Usage
+
+Load the module and start using its utilities:
+
+```lua
+local EasyLua = require("easylua")
+
+-- Example: Reading a file
+local content = EasyLua.readFile("example.txt")
+print(content)
+
+-- Example: JSON Encoding
+local jsonString = EasyLua.jsonEncode({ key = "value" })
+print(jsonString)
+```
+
+---
+
+## 🤝 **Contribution Guide**
+
+Contributions are welcome! If you want to add a new feature or fix a bug, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`feature/your-feature` or `bugfix/your-fix`).
+3. Add your code and document it.
+4. Submit a pull request with a clear description of your changes.
+
+---
+
+## 📄 **License**
+
+EasyLua is licensed under the [MIT License](https://github.com/neoapps-dev/easylua/blob/main/LICENSE), allowing you to use it freely in both open-source and commercial projects.
+
+---
+
+Made with ❤️ by [NEOAPPS DEV](https://github.com/neoapps-dev).
