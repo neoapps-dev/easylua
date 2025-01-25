@@ -877,11 +877,12 @@ Check if a true internet connection is available.
 
 ---
 
-### `EasyLua.notify(title, message)`
+### `EasyLua.notify(name, title, message)`
 
-Sends a desktop notification on Unix-Like systems. and a dialog box on Windows.
+Sends a desktop notification on Unix-Like and Windows systems.
 
 - **Parameters**:
+  - `name` (string): The name/tag of the app
   - `title` (string): The title of the notification.
   - `message` (string): The message of the notification.
 

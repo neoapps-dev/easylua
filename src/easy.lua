@@ -479,14 +479,14 @@ end
 
 -- Show a desktop notification
 -- Thanks to https://gist.github.com/dend/5ae8a70678e3a35d02ecd39c12f99110 for the windows method :)
-function EasyLua.notify(title, message)
+function EasyLua.notify(name, title, message)
     if EasyLua.getOS() == "Windows" then
         os.execute(string.format(
-            [[powershell -Command "function Show-Notification { param([string]$ToastTitle, [string][parameter(ValueFromPipeline)]$ToastText); [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null; $Template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02); $RawXml = [xml]$Template.GetXml(); ($RawXml.toast.visual.binding.text | where {$_.id -eq '1'}).AppendChild($RawXml.CreateTextNode($ToastTitle)) > $null; ($RawXml.toast.visual.binding.text | where {$_.id -eq '2'}).AppendChild($RawXml.CreateTextNode($ToastText)) > $null; $SerializedXml = New-Object Windows.Data.Xml.Dom.XmlDocument; $SerializedXml.LoadXml($RawXml.OuterXml); $Toast = [Windows.UI.Notifications.ToastNotification]::new($SerializedXml); $Toast.Tag = 'EasyLua'; $Toast.Group = 'EasyLua'; $Toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(1); $Notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('EasyLua'); $Notifier.Show($Toast); } Show-Notification -ToastTitle '%s' -ToastText '%s'"]],
-            title, message
+            [[powershell -Command "function Show-Notification { param([string]$ToastTitle, [string][parameter(ValueFromPipeline)]$ToastText); [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null; $Template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02); $RawXml = [xml]$Template.GetXml(); ($RawXml.toast.visual.binding.text | where {$_.id -eq '1'}).AppendChild($RawXml.CreateTextNode($ToastTitle)) > $null; ($RawXml.toast.visual.binding.text | where {$_.id -eq '2'}).AppendChild($RawXml.CreateTextNode($ToastText)) > $null; $SerializedXml = New-Object Windows.Data.Xml.Dom.XmlDocument; $SerializedXml.LoadXml($RawXml.OuterXml); $Toast = [Windows.UI.Notifications.ToastNotification]::new($SerializedXml); $Toast.Tag = '%s'; $Toast.Group = $Toast.Tag; $Toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(1); $Notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier($Toast.Tag); $Notifier.Show($Toast); } Show-Notification -ToastTitle '%s' -ToastText '%s'"]],
+            name, title, message
         ))
     else
-        os.execute(string.format('notify-send "%s" "%s"', title, message))
+        os.execute(string.format('notify-send "%s" "%s" -a "%s"', title, message, name))
     end
 end
 
