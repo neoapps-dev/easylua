@@ -1,6 +1,10 @@
-# EasyLua
-
-EasyLua is a module to help you write less code with Lua!
+<div align="center">
+  <img width="150" height="150" src="logo.png">
+  <h1>EasyLua</h1>
+  <p><em>Minimal Lua module to not reinvent the wheel.</em></p>
+  
+  [![Codeac](https://static.codeac.io/badges/2-903404923.svg "Codeac")](https://app.codeac.io/github/neoapps-dev/easylua) [![License](https://img.shields.io/github/license/neoapps-dev/easylua.svg?style=flat-square)](https://github.com/neoapps-dev/buildit/blob/master/LICENSE)
+</div>
 
 ## Installation
 
