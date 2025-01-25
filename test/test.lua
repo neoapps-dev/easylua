@@ -454,12 +454,17 @@ end)
 -- Final Messages
 ---------------------
 
-Easy.Log.log(Easy.Log.levels["INFO"], "All tests passed!") -- syntax 1
-Easy.Log.trace("This is a trace message") -- syntax 2
-Easy.Log.debug("This is a debug message")
-Easy.Log.info("This is an info message")
-Easy.Log.warn("This is a warning message")
-Easy.Log.error("This is an error message")
-Easy.Log.fatal("This is a fatal message")
+local eventEmitter = Easy.Events:new()
+eventEmitter:on("test", function() -- can add arguments too
+    Easy.Log.log(Easy.Log.levels["INFO"], "All tests passed!") -- syntax 1
+    Easy.Log.trace("This is a trace message") -- syntax 2
+    Easy.Log.debug("This is a debug message")
+    Easy.Log.info("This is an info message")
+    Easy.Log.warn("This is a warning message")
+    Easy.Log.error("This is an error message")
+    Easy.Log.fatal("This is a fatal message")
+end)
+
+eventEmitter:emit("test") -- supports multiple arguments too
 
 print("\n=== DONE ===\n")

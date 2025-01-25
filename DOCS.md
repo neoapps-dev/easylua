@@ -1344,3 +1344,27 @@ Easy.HTTP.delete("https://reqres.in/api/users/2", nil, nil, function(response)
     print("DELETE Response:", response)
 end)
 ```
+
+---
+
+## `EasyEventEmitter` (`Easy.Events`)
+
+A simple event emitter class that allows you to emit events and listen for them. Integrated into EasyLua.
+
+### Functions of EasyEventEmitter
+
+These are the functions
+    - `emit(event, ...)` : Emit an event with optional arguments.
+    - `on(event, callback)` : Listen for an event and call the callback when it's emitted.
+    - `off(event, callback)` : Stop listening for an event.
+
+### Example for EasyEventEmitter
+
+```lua
+local Easy = require("easy")
+local emitter = Easy.Events:new()
+emitter:emit("test", "Hello, world!")
+emitter:on("test", function(arg)
+print(arg)
+end)
+```
