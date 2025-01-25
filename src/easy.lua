@@ -461,10 +461,11 @@ function EasyLua.getLocalIP(eth0)
         handle:close()
         return result:match("(%d+%.%d+%.%d+%.%d+)")
     else
+        local handle = nil
         if eth0 then
-            local handle = io.popen("ip -4 -o addr show dev eth0| awk '{split($4,a,"/");print a[1]}'") -- only shows eth0
+            handle = io.popen("ip_output=$(ip -4 -o addr show dev wlan0) && ip_address=${ip_output##*inet } && echo ${ip_address%%/*}") -- only shows eth0
         else
-            local handle = io.popen("ip -4 -o addr show dev wlan0| awk '{split($4,a,"/");print a[1]}'") -- only shows wlan0
+            handle = io.popen("ip_output=$(ip -4 -o addr show dev wlan0) && ip_address=${ip_output##*inet } && echo ${ip_address%%/*}") -- only shows wlan0
         end
         local result = handle:read("*a")
         handle:close()

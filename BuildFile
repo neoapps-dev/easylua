@@ -19,35 +19,33 @@ echo Packed EasyLua in ./dist/easy.lua!
 }
 
 pack:lignux {
-#!/bin/sh
-echo Packing EasyLua as a one file...
-mkdir build
-cd build
-cp ../src/* .
-cp ../deps/* .
-mv easy.lua framework.lua
-output_file="easy.lua"
-exclude_file="dkjson.lua"
-> "$output_file"
-for file in *.lua; do
-  [ -e "$file" ] || { echo "No .lua files found."; exit 1; }
-  [ "$file" = "$exclude_file" ] && continue
-  {
-    echo "-- Begin file: $file"
-    cat "$file"
-    echo "-- End file: $file"
-    echo
-  } >> "$output_file"
-done
-echo "Files merged into $output_file"
-cd ..
-mkdir dist
-cd dist
-mv ../build/easy.lua .
-rm -rf ../build
-cd ..
-echo Packed EasyLua in ./dist/easy.lua!
-}
+    #!/bin/sh
+    echo Packing EasyLua as a one file...
+    mkdir build
+    cd build
+    cp ../src/* .
+    cp ../deps/* .
+    mv easy.lua framework.lua
+    output_file="easy.lua"
+    exclude_file="dkjson.lua"
+    echo> "$output_file"
+    for file in *.lua; do
+      [ -e "$file" ] || { echo "No .lua files found."; exit 1; }
+      [ "$file" = "$exclude_file" ] && continue
+        echo "-- Begin file: $file">> "$output_file"
+        /bin/cat "$file">> "$output_file"
+        echo "-- End file: $file">> "$output_file"
+        echo>> "$output_file"
+    done
+    echo "Files merged into $output_file"
+    cd ..
+    mkdir dist
+    cd dist
+    mv ../build/easy.lua .
+    rm -rf ../build
+    cd ..
+    echo Packed EasyLua in ./dist/easy.lua!
+    }
 
 pack:macos {
 #!/bin/sh
@@ -59,16 +57,14 @@ cp ../deps/* .
 mv easy.lua framework.lua
 output_file="easy.lua"
 exclude_file="dkjson.lua"
-> "$output_file"
+echo> "$output_file"
 for file in *.lua; do
   [ -e "$file" ] || { echo "No .lua files found."; exit 1; }
   [ "$file" = "$exclude_file" ] && continue
-  {
-    echo "-- Begin file: $file"
-    cat "$file"
-    echo "-- End file: $file"
-    echo
-  } >> "$output_file"
+    echo "-- Begin file: $file">> "$output_file"
+    /bin/cat "$file">> "$output_file"
+    echo "-- End file: $file">> "$output_file"
+    echo>> "$output_file"
 done
 echo "Files merged into $output_file"
 cd ..
