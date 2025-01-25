@@ -18,6 +18,11 @@
 10. [System Utilities](#system-utilities)
 11. [Advanced Utilities](#advanced-utilities)
 12. [Examples](#examples)
+13. [EasyOOP](#easyoop)
+14. [EasyQueue](#easyqueue)
+15. [EasyDB](#easydb)
+16. [EasyHTTP](#easyhttp)
+17. [EasyEventEmitter (Easy.Events)](#easyeventemitter-easyevents)
 
 ---
 
@@ -1260,10 +1265,6 @@ print(db:get("name"))  -- Output: John
 db:delete("name")
 print(db:get("name"))  -- Output: nil
 ```
-
----
-
-Here's the documentation for the **EasyHTTP** module using the APIs we just discussed (ReqRes.in, Postman Echo, and JSONPlaceholder). This includes function descriptions and example usage for each HTTP method.
 
 ---
 
