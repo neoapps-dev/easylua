@@ -437,7 +437,7 @@ function EasyLua.getHostname()
     if EasyLua.getOS() == "Windows" then
         return EasyLua.execute("hostname"):gsub("\n", "")
     else
-        return EasyLua.execute("hostname -s"):gsub("\n", "")
+        return EasyLua.execute("cat /etc/hostname"):gsub("\n", "")
     end
 end
 
@@ -454,14 +454,18 @@ function EasyLua.getUptime()
 end
 
 -- Get the local IP address of the system
-function EasyLua.getLocalIP()
+function EasyLua.getLocalIP(eth0)
     if EasyLua.getOS() == "Windows" then
         local handle = io.popen("ipconfig | findstr /i \"IPv4\"")
         local result = handle:read("*a")
         handle:close()
         return result:match("(%d+%.%d+%.%d+%.%d+)")
     else
-        local handle = io.popen("hostname -I")
+        if eth0 then
+            local handle = io.popen("ip -4 -o addr show dev eth0| awk '{split($4,a,"/");print a[1]}'") -- only shows eth0
+        else
+            local handle = io.popen("ip -4 -o addr show dev wlan0| awk '{split($4,a,"/");print a[1]}'") -- only shows wlan0
+        end
         local result = handle:read("*a")
         handle:close()
         return result:match("(%d+%.%d+%.%d+%.%d+)")

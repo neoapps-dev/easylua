@@ -864,9 +864,12 @@ Get the uptime of the current machine.
 
 ---
 
-### `Easy.Lua.getLocalIP()`
+### `Easy.Lua.getLocalIP(eth0)`
 
 Get the local IP address of the system.
+
+- **Parameters**:
+  - `eth0` (boolean, optional, GNU/Linux, macOS and BSD only): Specifies if it should use wlan0 or eth0.
 
 - **Returns**:
   - (string) The local IP address.
