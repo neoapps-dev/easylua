@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="150" height="150" src="logo.png">
+  <img width="150" height="150" src="https://raw.githubusercontent.com/neoapps-dev/easylua/refs/heads/main/logo.png">
   <h1>EasyLua</h1>
   <p><em>Minimal Lua module to not reinvent the wheel.</em></p>
   
