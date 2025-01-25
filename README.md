@@ -98,6 +98,7 @@ Handle time-related operations effortlessly:
    ```bash
    buildit pack
    ```
+   
 3. Copy the generated `dist/easy.lua` file to your project directory.
 
 ### Usage
