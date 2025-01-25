@@ -5,14 +5,14 @@ pack:windows {
 echo Packing EasyLua as a one file...
 md build
 cd build
-copy ..\src\* .
-copy ..\deps\* .
+copy /Y ..\src\* .
+copy /Y ..\deps\* .
 ren easy.lua framework.lua
 lua -e "local output_file = 'easy.lua'; local input_files = {'dkjson.lua'}; local command = (package.config:sub(1,1) == '\\') and 'dir /b *.lua' or 'ls *.lua 2>/dev/null'; local handle = io.popen(command); if handle then for file in handle:lines() do if file ~= 'dkjson.lua' then table.insert(input_files, file) end end handle:close() else print('Failed to list files') return end; local output = io.open(output_file, 'w'); if not output then print('Failed to open output file: ' .. output_file) return end; for _, file in ipairs(input_files) do local input = io.open(file, 'r'); if input then output:write('-- Begin file: ' .. file .. '\n'); output:write(input:read('*a')); output:write('\n-- End file: ' .. file .. '\n\n'); input:close() else print('Failed to open file: ' .. file) end end; output:close(); print('Files merged into ' .. output_file)"
 cd ..
 md dist
 cd dist
-move ..\build\easy.lua .
+move /Y ..\build\easy.lua .
 cd ..
 del /Q build
 echo Packed EasyLua in ./dist/easy.lua!
@@ -68,7 +68,7 @@ rm dist/test.lua
 test:windows {
 @echo off
 cd dist
-copy ..\test\test.lua .
+copy /Y ..\test\test.lua .
 lua test.lua
 cd ..
 del /Q dist\test.lua
