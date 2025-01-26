@@ -984,13 +984,37 @@ Assert a condition is true, otherwise raise an error.
 - **Raises**:
   - An error if the condition is false.
 
-### `Easy.Lua.try(f, catch_f)`
+### `try`, `catch` and `finally`
 
 Try-catching in a new syntax!
 
+Example:
+
+```lua
+try {
+    function()
+        error("Something went wrong!") -- This will trigger the error
+    end, -- must have a `,`
+catch { -- inside the try block
+    function(err) 
+        print("Caught an exception: " .. err)
+        print("Don't worry, this means that it passed :)")
+    end
+}
+-- you can use finally here too :)
+}
+```
+
+### `Easy.Lua.eval(code)`
+
+Evaluate a piece of code (Lua code, of course).
+
 - **Parameters**:
-  - `f` (function): Function to try
-  - `catch_f` (function(exception)): Catching function (with the exception)
+  - `code` (string): The code to evaluate.
+
+- **Returns**:
+  - If the eval was successful, it will return what the eval returned.
+  - If it wasn't successful, it will return `nil` and will print a FATAL with the error (into the console and log.txt).
 
 ### `Easy.Lua.Reactive(value)`
 
@@ -1005,21 +1029,22 @@ Reactive objects with subscribing to changes, changing value and more!
     - object:set(value): Changes the value of the object.
     - object:get(): Gets the current latest value.
 
-### `Easy.Log.%s(message)`, %s = Log level
+### `Easy.Log.%s(message, should_log)`, %s = Log level
 
 Logs a message with the log level and the message.
 
 - **Parameters**:
   - `message` (string): The message to log.
+  - `should_log` (boolean): Whether to log the message to log.txt or not. (default --> false)
 
 ```lua
-Easy.Log.log(Easy.Log.levels["INFO"], "All tests passed!") -- syntax 1
-Easy.Log.trace("This is a trace message") -- syntax 2
-Easy.Log.debug("This is a debug message")
-Easy.Log.info("This is an info message")
-Easy.Log.warn("This is a warning message")
-Easy.Log.error("This is an error message")
-Easy.Log.fatal("This is a fatal message")
+Easy.Log.log(Easy.Log.levels["INFO"], "All tests passed!", true) -- syntax 1
+Easy.Log.trace("This is a trace message", true) -- syntax 2
+Easy.Log.debug("This is a debug message", true)
+Easy.Log.info("This is an info message", true)
+Easy.Log.warn("This is a warning message", true)
+Easy.Log.error("This is an error message", true)
+Easy.Log.fatal("This is a fatal message", true)
 ```
 
 Output: (colored inside the terminal)

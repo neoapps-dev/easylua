@@ -582,15 +582,9 @@ end
 
 -- Assert a condition is true, otherwise raise an error
 function EasyLua.assert(condition, message)
-    if not condition then
-        error("[ERROR] " .. message)
-    end
-end
-
-function EasyLua.try(f, catch_f)
-    local status, exception = pcall(f)
-    if not status then
-        catch_f(exception)
+        if not condition then
+        EasyLogging.fatal(message, true)
+        error(message)
     end
 end
 
@@ -613,6 +607,19 @@ function EasyLua.Reactive(value)
         end
     }
     return obj
-end 
+end
 
+-- Evaluate a piece of code (Lua code)
+function EasyLua.eval(code)
+    local func, err = load(code, "Eval", "t", _G)
+    if not func then
+        EasyLogging.fatal(err, true); return nil
+    end
+    return func()
+end
+
+-- clears log.txt
+EasyLua.deleteFile("log.txt")
+
+-- OOP, Queue, EasyLogging, DB, Color, EasyEventEmitter and EasyHTTP are on seperate files, they will be merged by using the buildit pack.
 return { OOP = OOP, Lua = EasyLua, Queue = Queue, DB = DB, Log = EasyLogging, Color = EasyColor, HTTP = EasyHTTP, Events = EasyEventEmitter }

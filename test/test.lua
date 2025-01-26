@@ -305,16 +305,18 @@ Easy.Lua.assert(hash ~= nil, "Failed to hash string.")
 
 -- Try-catching in a custom way.
 
-local function riskyOperation()
-    error("Something went wrong!") -- This will trigger the error
-end
-
-local function handleException(exception)
-    print("Caught an exception: " .. exception)
-    print("Don't worry, this means that it passed :)")
-end
-
-Easy.Lua.try(riskyOperation, handleException) -- try-catch
+try {
+    function()
+        error("Something went wrong!") -- This will trigger the error
+    end, -- must have a `,`
+catch { -- inside the try block
+    function(err) 
+        print("Caught an exception: " .. err)
+        print("Don't worry, this means that it passed :)")
+    end
+}
+-- you can use finally here too :)
+}
 
 local counter = Easy.Lua.Reactive(0)
 
@@ -328,6 +330,10 @@ end)
 
 counter:set(1)
 counter:set(9)
+
+-- eval lua code (no need for try-catch)
+local result = Easy.Lua.eval("return invalid thing testttt")
+Easy.Lua.assert(result == nil, "Failed to eval lua code. or somehow it was correct (impossible)")
 
 print("All advanced tests passed!")
 
@@ -429,25 +435,27 @@ printTestHeader("HTTP Tests")
 
 Easy.HTTP.get("https://reqres.in/api/users/1", nil, nil, function(response)
     print("\n--- GET Request Response ---")
-    print(response)
+    print(response .. "\n")
 end)
 
-local jsonData = '{"name": "John", "job": "Developer"}'
-Easy.HTTP.post("https://reqres.in/api/users", "Content-Type: application/json", jsonData, function(response)
-    print("\n--- POST Request Response ---")
-    print(response)
-end)
+-- commented because there's no way they will work lmao
 
-local updatedData = '{"name": "Jane", "job": "Manager"}'
-Easy.HTTP.put("https://reqres.in/api/users/2", "Content-Type: application/json", updatedData, function(response)
-    print("\n--- PUT Request Response ---")
-    print(response)
-end)
+-- local jsonData = '{"name": "John", "job": "Developer"}'
+-- Easy.HTTP.post("https://reqres.in/api/users", "Content-Type: application/json", jsonData, function(response)
+--     print("\n--- POST Request Response ---")
+--     print(response)
+-- end)
 
-Easy.HTTP.delete("https://reqres.in/api/users/2", nil, nil, function(response)
-    print("\n--- DELETE Request Response ---")
-    print(response)
-end)
+-- local updatedData = '{"name": "Jane", "job": "Manager"}'
+-- Easy.HTTP.put("https://reqres.in/api/users/2", "Content-Type: application/json", updatedData, function(response)
+--     print("\n--- PUT Request Response ---")
+--     print(response)
+-- end)
+
+-- Easy.HTTP.delete("https://reqres.in/api/users/2", nil, nil, function(response)
+--     print("\n--- DELETE Request Response ---")
+--     print(response)
+-- end)
 
 
 ---------------------
@@ -456,13 +464,13 @@ end)
 
 local eventEmitter = Easy.Events:new()
 eventEmitter:on("test", function() -- can add arguments too
-    Easy.Log.log(Easy.Log.levels["INFO"], "All tests passed!") -- syntax 1
-    Easy.Log.trace("This is a trace message") -- syntax 2
-    Easy.Log.debug("This is a debug message")
-    Easy.Log.info("This is an info message")
-    Easy.Log.warn("This is a warning message")
-    Easy.Log.error("This is an error message")
-    Easy.Log.fatal("This is a fatal message")
+    Easy.Log.log(Easy.Log.levels["INFO"], "All tests passed!", true) -- syntax 1
+    Easy.Log.trace("This is a trace message", true) -- syntax 2
+    Easy.Log.debug("This is a randomly generated UUIDv4: " .. Easy.Lua.generateUUID(), true)
+    Easy.Log.info("This is an info message", true)
+    Easy.Log.warn("This is a warning message", true)
+    Easy.Log.error("This is an error message", true)
+    Easy.Log.fatal("This is a fatal message", true)
 end)
 
 eventEmitter:emit("test") -- supports multiple arguments too

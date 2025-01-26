@@ -88,6 +88,8 @@ Handle time-related operations effortlessly:
 
 ## 🛠️ **Getting Started**
 
+Please note that we've only tested it on GNU/Linux (Arch btw) and Windows only. tests on other devices like macOS and BSD are welcome. please flag any issues you encounter.
+
 ### Installation
 
 1. Install [BuildIt](https://github.com/neoapps-dev/buildit)
@@ -134,4 +136,4 @@ EasyLua is licensed under the [MIT License](https://github.com/neoapps-dev/easyl
 
 ---
 
-Made with ❤️ by [NEOAPPS DEV](https://github.com/neoapps-dev).
+Made with ❤️ by [NEOAPPS DEV](https://github.com/neoapps-dev) and the open-source community.
