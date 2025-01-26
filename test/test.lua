@@ -1,4 +1,4 @@
--- test_easylua.lua
+-- EasyLua unit tests (made with EasyLua itself)
 local Easy = require("easy")
 
 ---------------------

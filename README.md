@@ -1,6 +1,6 @@
 <div align="center">
   <img width="150" height="150" src="https://raw.githubusercontent.com/neoapps-dev/easylua/refs/heads/main/logo.png">
-  <h1>EasyLua</h1>
+  <center><h1>EasyLua</h1></center>
   <p><em>Minimal Lua module to not reinvent the wheel.</em></p>
   
   [![Codeac](https://static.codeac.io/badges/2-903404923.svg "Codeac")](https://app.codeac.io/github/neoapps-dev/easylua) [![License](https://img.shields.io/github/license/neoapps-dev/easylua.svg?style=flat-square)](https://github.com/neoapps-dev/buildit/blob/master/LICENSE)
