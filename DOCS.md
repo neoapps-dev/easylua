@@ -988,6 +988,8 @@ Assert a condition is true, otherwise raise an error.
 
 Try-catching in a new syntax!
 
+> Note: the catch{} and finally{} are optional.
+
 Example:
 
 ```lua
