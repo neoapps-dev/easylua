@@ -1,40 +1,43 @@
-name: Package EasyLua as a single Lua file
+name: Build Lua Project
+
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+     branches:
+       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Package using a custom script
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Prepare build folders
         run: |
-          echo Packing EasyLua as a one file...
-          mkdir build
-          cd build
-          cp ../src/* .
-          cp ../deps/* .
-          mv easy.lua framework.lua
-          output_file="easy.lua"
-          echo> "$output_file"
-          for file in *.lua; do
-          [ -e "$file" ] || { echo "No .lua files found."; exit 1; }
-          [ "$file" = "$exclude_file" ] && continue
-          {
-          echo "-- Begin file: $file"
-          cat "$file"
-          echo "-- End file: $file"
-          echo
-          } >> "$output_file"
+          mkdir -p build dist
+          
+      - name: Copy .lua files to build folder
+        run: |
+          cp src/*.lua build/
+          cp deps/*.lua build/
+
+      - name: Rename easy.lua to framework.lua
+        run: |
+          if [ -f build/easy.lua ]; then
+            mv build/easy.lua build/framework.lua
+          fi
+
+      - name: Merge .lua files into dist/easy.lua
+        run: |
+          echo "" > dist/easy.lua
+          for file in build/*.lua; do
+            echo "-- begin file: $file" >> dist/easy.lua
+            cat "$file" >> dist/easy.lua
+            echo "" >> dist/easy.lua
           done
-          echo "Files merged into $output_file"
-          cd ..
-          mkdir dist
-          cd dist
-          mv ../build/easy.lua .
-          rm -rf ../build
-          cd ..
-          echo Packed EasyLua in ./dist/easy.lua!
+
+      - name: Display merged easy.lua
+        run: cat dist/easy.lua
