@@ -1,0 +1,40 @@
+name: Package EasyLua as a single Lua file
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package using a custom script
+        run: |
+          echo Packing EasyLua as a one file...
+          mkdir build
+          cd build
+          cp ../src/* .
+          cp ../deps/* .
+          mv easy.lua framework.lua
+          output_file="easy.lua"
+          echo> "$output_file"
+          for file in *.lua; do
+          [ -e "$file" ] || { echo "No .lua files found."; exit 1; }
+          [ "$file" = "$exclude_file" ] && continue
+          {
+          echo "-- Begin file: $file"
+          cat "$file"
+          echo "-- End file: $file"
+          echo
+          } >> "$output_file"
+          done
+          echo "Files merged into $output_file"
+          cd ..
+          mkdir dist
+          cd dist
+          mv ../build/easy.lua .
+          rm -rf ../build
+          cd ..
+          echo Packed EasyLua in ./dist/easy.lua!
