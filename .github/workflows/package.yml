@@ -1,4 +1,4 @@
-name: Build Lua Project
+name: Package EasyLua
 
 on:
   push:
@@ -39,5 +39,8 @@ jobs:
             echo "" >> dist/easy.lua
           done
 
-      - name: Display merged easy.lua
-        run: cat dist/easy.lua
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: easy.lua
+          path: dist/easy.lua
