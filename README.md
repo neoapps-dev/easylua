@@ -3,7 +3,7 @@
   <h1>EasyLua</h1>
   <p><em>Minimal Lua module to not reinvent the wheel.</em></p>
   
-  [![Codeac](https://static.codeac.io/badges/2-903404923.svg "Codeac")](https://app.codeac.io/github/neoapps-dev/easylua) [![License](https://img.shields.io/github/license/neoapps-dev/easylua.svg?style=flat-square)](https://github.com/neoapps-dev/buildit/blob/master/LICENSE)
+  [![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)](https://lua.org) [![Codeac](https://static.codeac.io/badges/2-903404923.svg "Codeac")](https://app.codeac.io/github/neoapps-dev/easylua) [![License](https://img.shields.io/github/license/neoapps-dev/easylua.svg?style=flat-square)](https://github.com/neoapps-dev/buildit/blob/master/LICENSE)
 </div>
 
 **EasyLua** is a lightweight Lua utility library designed to simplify everyday programming tasks. It aims to eliminate the repetitive work of implementing common utility functions and provides developers with a collection of reusable, cross-platform tools. Whether you're working on a game, web app, or general scripting task, EasyLua can make your Lua development faster and more efficient.
