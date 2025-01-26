@@ -1,12 +1,10 @@
 <div align="center">
   <img width="150" height="150" src="https://raw.githubusercontent.com/neoapps-dev/easylua/refs/heads/main/logo.png">
-  <center><h1>EasyLua</h1></center>
+  <h1>EasyLua</h1>
   <p><em>Minimal Lua module to not reinvent the wheel.</em></p>
   
   [![Codeac](https://static.codeac.io/badges/2-903404923.svg "Codeac")](https://app.codeac.io/github/neoapps-dev/easylua) [![License](https://img.shields.io/github/license/neoapps-dev/easylua.svg?style=flat-square)](https://github.com/neoapps-dev/buildit/blob/master/LICENSE)
 </div>
-
-# EasyLua
 
 **EasyLua** is a lightweight Lua utility library designed to simplify everyday programming tasks. It aims to eliminate the repetitive work of implementing common utility functions and provides developers with a collection of reusable, cross-platform tools. Whether you're working on a game, web app, or general scripting task, EasyLua can make your Lua development faster and more efficient.
 
