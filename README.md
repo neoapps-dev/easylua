@@ -92,13 +92,13 @@ Handle time-related operations effortlessly:
 
 ### Installation
 
-1. Install [BuildIt](https://github.con/neoapps-dev/buildit)
+1. Install [BuildIt](https://github.com/neoapps-dev/buildit)
 2. Package EasyLua as a one file:
 
    ```bash
    buildit pack
    ```
-   
+
 3. Copy the generated `dist/easy.lua` file to your project directory.
 
 ### Usage
